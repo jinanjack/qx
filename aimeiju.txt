@@ -2,10 +2,10 @@
 hostname = mjapp.*.com
 
 #启动广告&弹窗
-^http(s)://mjapp\.\w+\.com/index.php/app/ios/ads/index$ url reject-dict
-^http(s)://mjapp\.\w+\.com/index.php/app/ios/ver/index_ios$ url reject
-^http(s)://mjapp\.\w+\.com/index.php/app/ios/m3u8/index$ url rejec
-^http(s)://mjapp\.\w+\.com\/index.php\/app/ios/pay/ok$ url reject-dict
+^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/ads/index$ url reject-dict
+^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/ver/index_ios$ url reject
+^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/m3u8/index$ url rejec
+^http(s):\/\/mjapp\.\w+\.com\/index.php\/app/ios/pay/ok$ url reject-dict
 
 #vip&ad
-^http(s)://mjapp.\w+.com/index.php/app/ios/(vod\/show|(user|vod|topic)/index) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/aimeiju.js
+^http(s):\/\/mjapp.\w+.com/index.php/app/ios/(vod\/show|(user|vod|topic)/index) url script-response-body https:\/\/raw.githubusercontent.com/wf021325/qx/master/js/aimeiju.js
