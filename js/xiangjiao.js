@@ -37,11 +37,11 @@ if (url.indexOf(path2) != -1){
 
 if (url.indexOf(path4) != -1){
   let obj = JSON.parse(body);
-  obj.data.vodrow.limit_free = 0;
+  obj.data.vodrow.limit_free = "0";
   obj.data.vodrow.isvip = "0";
   obj.data.vodrow.islimit = "0";
-  obj.data.vodrow.islimitv3 = 0;
-  obj.data.vodrow.exclusive = 0;
+  obj.data.vodrow.islimitv3 = "0";
+  obj.data.vodrow.exclusive = "0";
   body = JSON.stringify(obj);
 }
 
