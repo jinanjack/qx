@@ -24,7 +24,7 @@ if (url.indexOf(path2) != -1){
   obj.data.iOS_adgroups ="";
   body = JSON.stringify(obj);
 }
-
+/*
 if (url.indexOf(path3) != -1) {
     let obj = JSON.parse(body);
     obj.retcode = "0";
@@ -44,5 +44,5 @@ if (url.indexOf(path4) != -1){
   obj.data.vodrow.exclusive = "0";
   body = JSON.stringify(obj);
 }
-
+*/
 $done({body});
