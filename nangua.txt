@@ -1,0 +1,3 @@
+#南瓜电影4.7.3
+hostname = p.doras.api.vcinema.cn
+^https\:\/\/p\.doras\.api\.vcinema\.cn\/v5\.0\/user\/\d+$ url script-response-body https://gitee.com/wangfei021325/QX/raw/master/JS/nangua.js
