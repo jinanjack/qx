@@ -1,5 +1,11 @@
 #爱美剧
 hostname = mjapp.*.com
 
+#弹窗&广告
+^http(s)://mjapp.\w+.com/index.php/app/ios/ads/index$ url reject-dict
+^http(s)://mjapp.\w+.com/index.php/app/ios/ver/index_ios$ url rejec
+^http(s)://mjapp.\w+.com/index.php/app/ios/m3u8/index$ url rejec
+^http(s)://mjapp.\w+.com\/index.php/app/ios/pay/ok$ url reject-dict
+
 #vip&ad
 ^http(s)://mjapp.\w+.com/index.php/app/ios/(vod\/show|(user|vod|topic)/index) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/aimeiju.js
