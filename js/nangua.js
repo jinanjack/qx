@@ -1,0 +1,11 @@
+/*  
+#南瓜电影  4.7.3
+hostname = p.doras.api.vcinema.cn
+^https\:\/\/p\.doras\.api\.vcinema\.cn\/v5\.0\/user\/\d+$
+*/
+
+let obj = JSON.parse($response.body);
+obj.content.user_id = "1023723";
+//obj.content.user_vip_end_date = "2088.08.08";
+//obj.content.user_vip_state = "2";
+$done({body: JSON.stringify(obj)});
