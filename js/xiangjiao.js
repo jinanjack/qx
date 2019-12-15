@@ -42,6 +42,7 @@ if (url.indexOf(path4) != -1){
   obj.data.vodrow.islimit = "0";
   obj.data.vodrow.islimitv3 = 0;
   obj.data.vodrow.exclusive = 0;
+  body = JSON.stringify(obj);
 }
 
 $done({body});
