@@ -7,13 +7,13 @@ const path4 = "/vod/show/"
 if (url.indexOf(path1) != -1){
   let obj = JSON.parse(body);
   obj.data.uinfo.play_daily_remainders = "666";
-  obj.data.uinfo.down_daily_remainders = "777";
-  obj.data.uinfo.next_upgrade_need = "0";
+  obj.data.uinfo.down_daily_remainders = "666";
   obj.data.uinfo.minivod_play_daily_remainders = "888";
   obj.data.uinfo.minivod_down_daily_remainders = "999";
+  obj.data.uinfo["next_upgrade_need"] = "0";
   obj.data.user.isvip = "1";
   obj.data.user.gicon = "V5";
-  obj.data.user.gid = 5"";
+  obj.data.user.gid = "5";
   body = JSON.stringify(obj);
 }
 
