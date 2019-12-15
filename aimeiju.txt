@@ -7,4 +7,4 @@ hostname = mjapp.*.com
 ^http(s):\/\/mjapp\.\w+\.com\/index\.php\/app\/ios\/pay\/ok$ url reject-dict
 
 #VIP
-^http(s):\/\/mjapp\.\w+\.com\/index\.php\/app\/ios\/(vod\/show|(user|vod|topic)\/index) url script-response-body https://gitee.com/wangfei021325/QX/raw/master/JS/aimeiju.js
+^http(s):\/\/mjapp\.\w+\.com\/index\.php\/app\/ios\/(vod\/show|(user|vod|topic)\/index) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/aimeiju.js
