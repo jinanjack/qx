@@ -1,5 +1,5 @@
 /*  
-#南瓜电影  4.7.3
+#南瓜电影  4.7.3[文明使用，请勿用于牟利,临期我会更新id]
 hostname = p.doras.api.vcinema.cn
 ^https\:\/\/p\.doras\.api\.vcinema\.cn\/v5\.0\/user\/\d+$
 */
