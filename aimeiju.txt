@@ -1,7 +1,7 @@
 #爱美剧
 hostname = mjapp.*.com
 
-#ad
+#弹窗&广告
 ^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/ads/index$ url reject-dict
 ^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/ver/index_ios$ url reject
 ^http(s):\/\/mjapp\.\w+\.com\/index\.php\/app\/ios\/pay\/ok$ url reject-dict
