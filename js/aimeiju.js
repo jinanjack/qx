@@ -1,12 +1,12 @@
 /* 
 #爱美剧（官网：xmj.app）
-hostname = mjapp.whetyy.com
+hostname = mjapp.*.com
 #启动广告/弹窗
-^http:\/\/mjapp\.whetyy\.com/index.php/app/ios/ads/index url reject-dict
-^http:\/\/mjapp\.whetyy\.com/index.php/app/ios/ver/index_ios$ url reject
-^http:\/\/mjapp\.whetyy\.com\/index\.php\/app\/ios\/pay\/ok$ url reject-dict
+^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/ads/index$ url reject-dict
+^http(s):\/\/mjapp\.\w+\.com/index.php/app/ios/ver/index_ios$ url reject
+^http(s):\/\/mjapp\.\w+\.com\/index\.php\/app\/ios\/pay\/ok$ url reject-dict
 #VIP
-^http:\/\/mjapp\.whetyy\.com\/index\.php\/app\/ios\/(vod\/show|(user|vod|topic)\/index) url script-response-body aimeiju.js
+^http(s):\/\/mjapp\.\w+\.com\/index\.php\/app\/ios\/(vod\/show|(user|vod|topic)\/index) url script-response-body
 */
 var body = $response.body;
 var url = $request.url;
