@@ -53,7 +53,7 @@ if (url.indexOf(banner) != -1) {
     body = JSON.stringify(obj);
 }
 
-if (url.indexOf(topic||type) != -1) {
+if (url.indexOf(topic) != -1||url.indexOf(type) != -1) {
     let obj = JSON.parse(body);
     let data = obj.data
     for (var i = data.length - 1 ; i >= 0 ; i--) {
