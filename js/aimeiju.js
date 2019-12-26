@@ -14,6 +14,7 @@ const user = "/index.php/app/ios/user/index"; //用户信息
 const show = "/index.php/app/ios/vod/show"; //视频播放页面
 const banner = "/index.php/app/ios/vod/index";//首页轮播广告
 const topic = "/index.php/app/ios/topic/index";//豆瓣热榜中间广告
+const type = "/index.php/app/ios/type/index"//综合转去，美剧专区中间广告
 
 if (url.indexOf(user) != -1){
   let obj = JSON.parse(body);
@@ -52,7 +53,7 @@ if (url.indexOf(banner) != -1) {
     body = JSON.stringify(obj);
 }
 
-if (url.indexOf(topic) != -1) {
+if (url.indexOf(topic||type) != -1) {
     let obj = JSON.parse(body);
     let data = obj.data
     for (var i = data.length - 1 ; i >= 0 ; i--) {
@@ -64,5 +65,4 @@ if (url.indexOf(topic) != -1) {
     }
     body = JSON.stringify(obj);
 }
-
 $done({body});
