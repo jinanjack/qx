@@ -2,7 +2,7 @@
 hostname = api.bjxkhc.com
 
 #启动广告/弹窗
-^http(s)://api.bjxkhc.com/index.php/app/ios/ads/index url reject-dict-200
+^http(s)://api.bjxkhc.com/index.php/app/ios/ads/index url reject-dict
 ^http(s)://api.bjxkhc.com/index.php/app/ios/ver/index_ios$ url reject
 ^http(s)://api.bjxkhc.com/index.php/app/ios/pay/ok$ url reject-dict
 
