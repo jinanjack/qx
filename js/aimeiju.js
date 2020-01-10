@@ -1,12 +1,12 @@
 /* 
 #爱美剧（官网：xmj.app）
-hostname = api.bjxkhc.com
+hostname = 经常变动.com
 #启动广告/弹窗
-^http(s)://api.bjxkhc.com/index.php/app/ios/ads/index url reject-dict
-^http(s)://api.bjxkhc.com/index.php/app/ios/ver/index_ios$ url reject
-^http(s)://api.bjxkhc.com/index.php/app/ios/pay/ok$ url reject-dict
+^http(s)://.*.com/index.php/app/ios/ads/index url reject-dict
+^http(s)://.*.com/index.php/app/ios/ver/index_ios$ url reject
+^http(s)://.*.com/index.php/app/ios/pay/ok$ url reject-dict
 #VIP
-^http(s):\/\/api.bjxkhc.com\/index\.php\/app\/ios\/(vod\/show|(user|vod|topic|type)\/index) url script-response-body
+^http(s)://.*.com/index.php/app/ios/(vod/show|(user|vod|topic|type)/index) url script-response-body
 */
 var body = $response.body;
 var url = $request.url;
