@@ -1,10 +1,10 @@
 #爱美剧
-hostname = mjapp.anlujia.com
+hostname = *.*.com
 
 #启动广告/弹窗
-^http(s)://.*.com/index.php/app/ios/ads/index url reject-dict
-^http(s)://.*.com/index.php/app/ios/ver/index_ios$ url reject
-^http(s)://.*.com/index.php/app/ios/pay/ok$ url reject-dict
+^http(s)://\w+.\w+.com/index.php/app/ios/ads/index url reject-dict
+^http(s)://\w+.\w+.com/index.php/app/ios/ver/index_ios$ url reject
+^http(s)://\w+.\w+.com/index.php/app/ios/pay/ok$ url reject-dict
 
 #VIP
-^http(s)://.*.com/index.php/app/ios/(vod\/show|(user|vod|topic|type)/index) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/aimeiju.js
+^http(s)://\w+.\w+.com/index.php/app/ios/(vod\/show|(user|vod|topic|type)/index) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/aimeiju.js
