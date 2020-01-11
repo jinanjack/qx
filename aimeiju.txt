@@ -1,4 +1,5 @@
 #爱美剧
+hostname = mjapp.anlujia.com
 hostname = *.*.com
 
 #启动广告/弹窗
