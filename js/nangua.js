@@ -4,7 +4,7 @@ hostname = p.doras.api.vcinema.cn
 ^https\:\/\/p\.doras\.api\.vcinema\.cn\/v5\.0\/user\/\d+$
 */
 let obj = JSON.parse($response.body);
-obj.content.user_id = 1000772;//2020-06-02
+obj.content.user_id = 1039119;//2022-01-01
 //obj.content.user_vip_end_date = "2088.08.08";
 //obj.content.user_vip_state = "2";
 $done({body: JSON.stringify(obj)});
