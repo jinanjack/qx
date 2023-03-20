@@ -1,4 +1,4 @@
 # hostname = biz.caiyunapp.com
 hostname = biz.cyapi.cn
 # ^https:\/\/biz\.caiyunapp\.com\/v2\/user\?app_name\=weather url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
-^https:\/\/biz\.cyapi\.cn\/v2\/user\?app_name=weather$ url script-response-body https://raw.githubusercontent.com/Maasea/surgeModule/master/Script/Weather/weather.js
+^https:\/\/biz\.cyapi\.cn\/v2\/user\?app_name=weather$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
