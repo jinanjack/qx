@@ -26,7 +26,7 @@ if (url.indexOf(rank1) != -1||url.indexOf(rank2) != -1) {
 var body_1 = $request.body;
 if (url.indexOf(gz_source) != -1) {
     let obj = JSON.parse(body_1);
-        source = obj.data.source;
+        source = obj.data_source;
     //body = JSON.stringify(obj);
     body = '{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":' + source + ',"list":[1,2,3]}}';
 }
