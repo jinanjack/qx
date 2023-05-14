@@ -1,2 +1,2 @@
-hostname =  app-api.yangjibao.com
-^https:\/\/app-api\.yangjibao\.com\/account$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+hostname =  *.yangjibao.com
+^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
