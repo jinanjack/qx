@@ -1,4 +1,4 @@
-hostname =  *.yangjibao.com
+hostname =  app-api.yangjibao.com , wx.yangjibao.com
 
 # 不带切换源
 #^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
