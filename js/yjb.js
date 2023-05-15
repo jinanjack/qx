@@ -1,5 +1,11 @@
+/*
+hostname =  *.yangjibao.com
+^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+*/
+
 var body = $response.body;
 var url = $request.url;
+
 const account = "/account"; //用户信息
 const vip_info = "/vip_info"; //用户信息
 const wx_account = "/wxapi/account";//用户信息
@@ -27,8 +33,9 @@ var body_1 = $request.body;
 if (url.indexOf(gz_source) != -1) {
     let obj = JSON.parse(body_1);
     var source = obj.data_source;
-    //body = JSON.stringify(obj);
-    body = '{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":source,"list":[1,2,3]}}';
+    var obj1 = {"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":source,"list":[1,2,3]}};
+    body = JSON.stringify(obj1);
+    
 }
 
 $done({body});
