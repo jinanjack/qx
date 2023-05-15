@@ -5,7 +5,7 @@ hostname =  *.yangjibao.com
 ^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 # 带切换源
-^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|fund_gz_source|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+# ^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|fund_gz_source|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 */
 
 var body = $response.body;
@@ -34,13 +34,8 @@ if (url.indexOf(rank1) != -1||url.indexOf(rank2) != -1) {
     body = JSON.stringify(obj);
 }
 
-var body_1 = $request.body;
 if (url.indexOf(gz_source) != -1) {
-    let obj = JSON.parse(body_1);
-    var source = obj.data_source;
-    var obj1 = {"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":source,"list":[1,2,3]}};
-    body = JSON.stringify(obj1);
-    
+    body = {"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}};
 }
 
 $done({body});
