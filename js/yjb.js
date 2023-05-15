@@ -5,11 +5,12 @@ hostname =  app-api.yangjibao.com , wx.yangjibao.com
 # https://app-api.yangjibao.com/account
 # https://wx.yangjibao.com/wxapi/account
 
+# VIP
 # https://app-api.yangjibao.com/vip_info
 
 # 加仓榜单APP&WX
 # https://app-api.yangjibao.com/fund_hold_ranking
-#https://wx.yangjibao.com/wxapi/fund_buy_ranking
+# https://wx.yangjibao.com/wxapi/fund_buy_ranking
 
 # 飙升榜APP&WX
 # https://wx.yangjibao.com/wxapi/fund_holdup_ranking
@@ -32,10 +33,11 @@ var url = $request.url;
 
 const account = "/account"; //账户
 const vip_info = "/vip_info"; //VIP
-const wx_account = "/wxapi/account";//WX_账户
+//const wx_account = "/wxapi/account";//WX_账户
 
-const rank1 = "/fund_buy_ranking";//加仓榜单
-const rank2 = "/wxapi/fund_holdup_ranking";//飙升榜
+//懒得一个个精确匹配，直接匹配_ranking
+//const rank1 = "/fund_buy_ranking";//加仓榜单
+//const rank2 = "/wxapi/fund_holdup_ranking";//飙升榜
 
 const gz_source = "/fund_gz_source";//切换源,貌似不可用
 
