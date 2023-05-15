@@ -1,3 +1,9 @@
+/*
+# slidebox
+hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
+^https:\/\/asia-east2-slidebox-ios-prod\.cloudfunctions\.net\/api_v1$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/slidebox.js
+*/
+
 var obj = {
     "data": {
         "env": {
