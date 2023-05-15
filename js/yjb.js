@@ -35,7 +35,7 @@ if (url.indexOf(rank1) != -1||url.indexOf(rank2) != -1) {
 }
 
 if (url.indexOf(gz_source) != -1) {
-    body = {"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}};
+    body = `{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}}`;
 }
 
 $done({body});
