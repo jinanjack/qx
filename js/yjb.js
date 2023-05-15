@@ -1,22 +1,22 @@
 /*
 hostname =  app-api.yangjibao.com , wx.yangjibao.com
 
-#用户信息
-#https://app-api.yangjibao.com/account
-#https://wx.yangjibao.com/wxapi/account
+# 用户信息
+# https://app-api.yangjibao.com/account
+# https://wx.yangjibao.com/wxapi/account
 
-#https://app-api.yangjibao.com/vip_info
+# https://app-api.yangjibao.com/vip_info
 
-#加仓榜单APP&WX
-#https://app-api.yangjibao.com/fund_hold_ranking
+# 加仓榜单APP&WX
+# https://app-api.yangjibao.com/fund_hold_ranking
 #https://wx.yangjibao.com/wxapi/fund_buy_ranking
 
-#飙升榜APP&WX
-#https://wx.yangjibao.com/wxapi/fund_holdup_ranking
+# 飙升榜APP&WX
+# https://wx.yangjibao.com/wxapi/fund_holdup_ranking
 
-#切换源APP&WX
-#https://app-api.yangjibao.com/fund_gz_source
-#https://wx.yangjibao.com/fund_gz_source
+# 切换源APP&WX
+# https://app-api.yangjibao.com/fund_gz_source
+# https://wx.yangjibao.com/fund_gz_source
 
 
 #最完美最全的正则匹配，将来有可能出现的也包含了
@@ -39,7 +39,7 @@ const rank2 = "/wxapi/fund_holdup_ranking";//飙升榜
 
 const gz_source = "/fund_gz_source";//切换源,貌似不可用
 
-if (url.indexOf(account) != -1||url.indexOf(vip_info) != -1||url.indexOf(wx_account) != -1){
+if (url.indexOf(account) != -1||url.indexOf(vip_info) != -1){
   let obj = JSON.parse(body);
       //obj.data.subscribe_status = 1;
       obj.data.vip_label = true;
@@ -48,7 +48,7 @@ if (url.indexOf(account) != -1||url.indexOf(vip_info) != -1||url.indexOf(wx_acco
   body = JSON.stringify(obj);
 }
 
-if (url.indexOf(rank1) != -1||url.indexOf(rank2) != -1) {
+if (url.indexOf('_ranking') != -1) {
     let obj = JSON.parse(body);
         obj.data.vip_label = true;
     body = JSON.stringify(obj);
