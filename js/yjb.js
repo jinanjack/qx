@@ -11,13 +11,14 @@ hostname =  *.yangjibao.com
 var body = $response.body;
 var url = $request.url;
 
-const account = "/account"; //用户信息
-const vip_info = "/vip_info"; //用户信息
-const wx_account = "/wxapi/account";//用户信息
+const account = "/account"; //账户
+const vip_info = "/vip_info"; //VIP
+const wx_account = "/wxapi/account";//WX_账户
 
 const rank1 = "/fund_buy_ranking";//加仓榜单
 const rank2 = "/wxapi/fund_holdup_ranking";//飙升榜
-const gz_source = "/fund_gz_source";//切换源
+
+const gz_source = "/fund_gz_source";//切换源,貌似不可用
 
 if (url.indexOf(account) != -1||url.indexOf(vip_info) != -1||url.indexOf(wx_account) != -1){
   let obj = JSON.parse(body);
