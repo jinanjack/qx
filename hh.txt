@@ -1,3 +1,4 @@
+#总hostname下面的都要屏蔽
 hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , app-api.yangjibao.com , wx.yangjibao.com ,
 
 # slidebox
