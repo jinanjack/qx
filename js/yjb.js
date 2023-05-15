@@ -1,35 +1,31 @@
 /*
-hostname =  *.yangjibao.com
+hostname =  app-api.yangjibao.com , wx.yangjibao.com
+
+#用户信息
+#https://app-api.yangjibao.com/account
+#https://wx.yangjibao.com/wxapi/account
+
+#https://app-api.yangjibao.com/vip_info
+
+#加仓榜单APP&WX
+#https://app-api.yangjibao.com/fund_hold_ranking
+#https://wx.yangjibao.com/wxapi/fund_buy_ranking
+
+#飙升榜APP&WX
+#https://wx.yangjibao.com/wxapi/fund_holdup_ranking
+
+#切换源APP&WX
+#https://app-api.yangjibao.com/fund_gz_source
+#https://wx.yangjibao.com/fund_gz_source
 
 
-//用户信息
-//https://app-api.yangjibao.com/account
-//https://wx.yangjibao.com/wxapi/account
+#最完美最全的正则匹配，将来有可能出现的也包含了
+#^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy)_ranking|fund_gz_source)
 
-//https://app-api.yangjibao.com/vip_info
+^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
-//加仓榜单APP
-//https://app-api.yangjibao.com/fund_hold_ranking
-//加仓榜单WX
-//https://wx.yangjibao.com/wxapi/fund_buy_ranking
-
-//飙升榜APP&WX
-//https://wx.yangjibao.com/wxapi/fund_holdup_ranking
-
-//切换源
-//https://app-api.yangjibao.com/fund_gz_source
-//https://wx.yangjibao.com/fund_gz_source
-
-
-//最完美最全的正则匹配，将来有可能出现的也包含了
-//^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy)_ranking|fund_gz_source)
-
-# 不带切换源
-^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
-
-# 带切换源
-^https:\/\/(app-api|wx)\.yangjibao\.com\/(account|vip_info|fund_hold_ranking|fund_gz_source|wxapi\/(account|fund_holdup_ranking)) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 */
+
 
 var body = $response.body;
 var url = $request.url;
