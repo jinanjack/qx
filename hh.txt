@@ -1,14 +1,14 @@
 #总hostname下面的都要屏蔽
-hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , app-api.yangjibao.com , wx.yangjibao.com , *.wtzw.com , ap*.intsig.net ,
-           #slidebox                                        #yangjibao                                  #七猫       #扫描全能王
+hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , *.yangjibao.com , *.wtzw.com , ap*.intsig.net ,
+# 备注-----slidebox----------------------------------------#yangjibao--------#七猫--------#扫描全能王------#
 
 # > slidebox
 #hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
 ^https:\/\/asia-east2-slidebox-ios-prod\.cloudfunctions\.net\/api_v1$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/slidebox.js
 
 
-# > yangjibao
-#hostname = app-api.yangjibao.com , wx.yangjibao.com
+# > yangjibao [app-api.yangjibao.com , wx.yangjibao.com]
+#hostname = *.yangjibao.com
 ^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 # > 七猫小说
