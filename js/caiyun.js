@@ -17,6 +17,7 @@ hostname = biz.caiyunapp.com , biz.cyapi.cn ,
 
 var body = $response.body;
 var url = $request.url;
+// 此处Token 需要是真实VIP客户提取
 let Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJ1c2VyX2lkIjoiNWY1YmZjNTdkMmM2ODkwMDE0ZTI2YmI4Iiwic3ZpcF9leHBpcmVkX2F0IjoxNjc0MjI3MTY2LjQxNjc3MSwidmlwX2V4cGlyZWRfYXQiOjB9.wbgfCRp3W9zEvzEYsiWxerta4G-d-b0qlYCcilevOKY";
 
 if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
@@ -30,6 +31,7 @@ if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
 	body = JSON.stringify(obj);
 }
 
+//随便输入账号，验证码，点击登录，会自动
 if (url.indexOf('/login_by_code') != -1) {
 	//let obj = JSON.parse(body)
 	let obj = {
