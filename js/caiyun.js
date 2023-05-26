@@ -32,13 +32,7 @@ if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
 
 if (url.indexOf('/login_by_code') != -1) {
 	//let obj = JSON.parse(body)
-	let obj = {
-		"status": "ok",
-		"result": {
-			"token": Token
-		},
-		"rc": 0
-	}
+	let obj = {"status":"ok","result":{"token":Token},"rc":0}
 	body = JSON.stringify(obj);
 }
 
