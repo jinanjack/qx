@@ -5,7 +5,6 @@ hostname = biz.caiyunapp.com , biz.cyapi.cn ,
 
 # https://biz.cyapi.cn/v2/user?app_name=weather
 # https://biz.cyapi.cn/v1/visitors
-
 # https://biz.cyapi.cn/v3/login_by_code 登录
 
 
@@ -28,22 +27,11 @@ if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
 		//obj.result.free_trial = 0;
 		//obj.result.vip_type = "s";
 		obj.result.token = Token;
-	body = JSON.stringify(obj);
 }
 
-//随便输入账号，验证码，点击登录
+//随便输入账号，验证码，点击登录,闪退再进入即可
 if (url.indexOf('/login_by_code') != -1) {
-	//let obj = JSON.parse(body)
-	let obj = {
-    "status": "ok",
-    "result": {
-        //"is_login": true,
-        "is_phone_verified": true,
-        "token": Token
-    },
-    "rc": 0
-}
-	body = JSON.stringify(obj);
+	let obj = {"status": "ok","result": {"is_phone_verified": true,"token": Token},"rc": 0}
 }
 
-$done({body});
+$done({body: JSON.stringify(obj)});
