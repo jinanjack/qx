@@ -31,7 +31,7 @@ if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
 	body = JSON.stringify(obj);
 }
 
-//随便输入账号，验证码，点击登录，会自动
+//随便输入账号，验证码，点击登录
 if (url.indexOf('/login_by_code') != -1) {
 	//let obj = JSON.parse(body)
 	let obj = {
@@ -39,7 +39,6 @@ if (url.indexOf('/login_by_code') != -1) {
     "result": {
         "is_login": true,
         //"phone_num": "18888888888",
-        //"is_phone_verified": true,
         "is_phone_verified": true,
         "token": Token
     },
