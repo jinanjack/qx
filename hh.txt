@@ -1,6 +1,6 @@
 #总hostname下面的都要屏蔽
-hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , app-api.yangjibao.com , wx.yangjibao.com , *.wtzw.com , 
-           #slidebox                                       #yangjibao                                   #七猫
+hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , app-api.yangjibao.com , wx.yangjibao.com , *.wtzw.com , ap*.intsig.net ,
+           #slidebox                                        #yangjibao                                  #七猫       #扫描全能王
 
 # > slidebox
 #hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
@@ -13,5 +13,8 @@ hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , app-api.yangjibao.c
 
 # > 七猫小说
 # hostname = *.wtzw.com
-^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
+^https:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
 
+# > 扫描全能王
+# hostname = ap*.intsig.net
+^https:\/\/api(|-cs)\.intsig\.net\/purchase\/cs\/query_property\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/CamScanner.js
