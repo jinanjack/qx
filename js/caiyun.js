@@ -37,7 +37,7 @@ if (url.indexOf('/login_by_code') != -1) {
     "result": {
         "is_login": true,
         //"phone_num": "18888888888",
-        "is_phone_verified": true,
+        //"is_phone_verified": true,
         "token": Token
     },
     "rc": 0
