@@ -26,7 +26,6 @@ if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
 	body = JSON.stringify(obj);
 }
 
-
 if (url.indexOf('/login_by_code') != -1) {
 	let obj = {
 		"status": "ok",
