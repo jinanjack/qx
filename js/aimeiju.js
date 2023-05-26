@@ -49,11 +49,12 @@ if (url.indexOf(banner) != -1) {
     let data = obj.data
     for (var i = data.length - 1 ; i >= 0 ; i--) {
         if (data[i].ad == 1) {
-            data.splice(i, 1)
+            data.splice(i, 1)//从后往前删除一个(针对数组)
         }
     }
     body = JSON.stringify(obj);
 }
+
 
 if (url.indexOf(topic) != -1||url.indexOf(type) != -1) {
     let obj = JSON.parse(body);
@@ -62,7 +63,7 @@ if (url.indexOf(topic) != -1||url.indexOf(type) != -1) {
         if (data[i].ad == 1) {
             data[i].ad = 0;
             data[i].pic = "";
-            delete data[i].url
+            delete data[i].url//删除
         }
     }
     body = JSON.stringify(obj);
