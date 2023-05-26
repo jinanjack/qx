@@ -12,29 +12,34 @@ hostname = biz.caiyunapp.com , biz.cyapi.cn ,
 
 # 正则匹配 ^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v(2\/user\?app_name=weather|1/visitors|3\/login_by_code)$
 
-^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v(2\/user\?app_name=weather|1\/visitors)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
-*/
-
+^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v\d\/(user\?app_name=weather|visitors|login_by_code)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
+ */
 
 var body = $response.body;
 var url = $request.url;
+let Token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJ1c2VyX2lkIjoiNWY1YmZjNTdkMmM2ODkwMDE0ZTI2YmI4Iiwic3ZpcF9leHBpcmVkX2F0IjoxNjc0MjI3MTY2LjQxNjc3MSwidmlwX2V4cGlyZWRfYXQiOjB9.wbgfCRp3W9zEvzEYsiWxerta4G-d-b0qlYCcilevOKY";
 
-if(url.indexOf('/user') != -1||url.indexOf('/visitors') != -1){
+if (url.indexOf('/user') != -1 || url.indexOf('/visitors') != -1) {
 	let obj = JSON.parse(body)
 		//obj.result.svip_expired_at = 3742732800;
 		//obj.result.is_xy_vip = true;
 		//obj.result.xy_svip_expire = 3742732800;
 		//obj.result.free_trial = 0;
 		//obj.result.vip_type = "s";
-		obj.result.token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJ1c2VyX2lkIjoiNWY1YmZjNTdkMmM2ODkwMDE0ZTI2YmI4Iiwic3ZpcF9leHBpcmVkX2F0IjoxNjc0MjI3MTY2LjQxNjc3MSwidmlwX2V4cGlyZWRfYXQiOjB9.wbgfCRp3W9zEvzEYsiWxerta4G-d-b0qlYCcilevOKY";
+		obj.result.token = Token;
 	body = JSON.stringify(obj);
 }
 
-if (url.indexOf('/login_by_code') != -1){
-	let obj = JSON.parse(body)
-		//{"status": "failed", "error": "Missing request parameters", "rc": -400}
-		obj = {"status":"ok","result":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ2ZXJzaW9uIjoxLCJ1c2VyX2lkIjoiNWY1YmZjNTdkMmM2ODkwMDE0ZTI2YmI4Iiwic3ZpcF9leHBpcmVkX2F0IjoxNjc0MjI3MTY2LjQxNjc3MSwidmlwX2V4cGlyZWRfYXQiOjB9.wbgfCRp3W9zEvzEYsiWxerta4G-d-b0qlYCcilevOKY"},"rc":0}
+if (url.indexOf('/login_by_code') != -1) {
+	//let obj = JSON.parse(body)
+	let obj = {
+		"status": "ok",
+		"result": {
+			"token": Token
+		},
+		"rc": 0
+	}
 	body = JSON.stringify(obj);
-}	
+}
 
 $done({body});
