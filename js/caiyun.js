@@ -17,6 +17,7 @@ hostname = biz.caiyunapp.com , biz.cyapi.cn ,
 
 
 var body = $response.body;
+var url = $request.url;
 
 if(url.indexOf('/user') != -1||url.indexOf('/visitors') != -1){
 	let obj = JSON.parse(body)
