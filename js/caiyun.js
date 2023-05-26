@@ -10,7 +10,7 @@ hostname = biz.caiyunapp.com , biz.cyapi.cn ,
 
 
 
-# 正则匹配 ^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v(2\/user\?app_name=weather|1/visitors|3\/login_by_code)$
+# 正则匹配 ^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v\d\/(user\?app_name=weather|visitors|login_by_code)$
 
 ^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v\d\/(user\?app_name=weather|visitors|login_by_code)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
  */
