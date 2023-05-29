@@ -2,28 +2,34 @@
 hostname =  app-api.yangjibao.com , wx.yangjibao.com
 
 # 用户信息
-# https://app-api.yangjibao.com/account
-# https://wx.yangjibao.com/wxapi/account
+# APP  https://app-api.yangjibao.com/account
+# WX   https://wx.yangjibao.com/wxapi/account
 
 # VIP
-# https://app-api.yangjibao.com/vip_info
+# APP  https://app-api.yangjibao.com/vip_info
 
 # 加仓榜单APP&WX
-# https://app-api.yangjibao.com/fund_hold_ranking
-# https://wx.yangjibao.com/wxapi/fund_buy_ranking
+# WX   https://wx.yangjibao.com/wxapi/fund_buy_ranking
+
+# 减仓
+# WX   https://wx.yangjibao.com/wxapi/fund_sell_ranking
+
+# 持有
+# APP  https://app-api.yangjibao.com/fund_hold_ranking
+# WX   https://wx.yangjibao.com/wxapi/fund_hold_ranking
 
 # 飙升榜APP&WX
-# https://wx.yangjibao.com/wxapi/fund_holdup_ranking
+#   https://wx.yangjibao.com/wxapi/fund_holdup_ranking
 
 # 切换源APP&WX
-# https://app-api.yangjibao.com/fund_gz_source
-# https://wx.yangjibao.com/fund_gz_source
+# APP  https://app-api.yangjibao.com/fund_gz_source
+# WX   https://wx.yangjibao.com/fund_gz_source
 
 
 #最完美最全的正则匹配，将来有可能出现的也包含了
-#^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy)_ranking|fund_gz_source)
+#^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source)
 
-^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 */
 
