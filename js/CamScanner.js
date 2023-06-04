@@ -8,7 +8,6 @@ CamScanner 解锁部分高级特权
 hostname = ap*.intsig.net
 ====================================
 */
-
 let body = $response.body;
-body = `{"data":{"psnl_vip_property":{"expiry":"3742732800"}}}`;
+body = '{"data":{"psnl_vip_property":{"expiry":"3742732800"}}}';
 $done({body});
