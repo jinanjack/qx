@@ -1,4 +1,4 @@
-/* 
+
 // ==UserScript==
 // @ScriptName        酷我音乐、酷我音乐纯净版[ SVIP+净化 ]
 // @Attention         史上最全酷我音乐净化加VIP音乐畅听，已兼容酷我原版与酷我畅听版
@@ -40,12 +40,12 @@ https?:\/\/mgxhtj\.kuwo\.cn\/mgxh\.s url script-response-body https://raw.github
 https?:\/\/appi\.kuwo\.cn\/kuwopay\/vip-tab\/page\/cells url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
 # > 酷我音乐_去除会员页顶部广告tab
 https?:\/\/appi\.kuwo\.cn\/kuwopay\/vip-tab\/setting url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
-# > 酷我音乐_数字专辑
-^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?newver url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
+
 # > 酷我音乐_听书权限接口1
 ^https?:\/\/.*\.(kuwo|lrts)\.(cn|me)\/a\.p url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
 # > 酷我音乐_听书权限接口2
 ^https?:\/\/.*\.kuwo\.cn\/v2\/api\/pay\/vip\/extraVipStatus url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
+
 # > 酷我音乐_新版vip接口1
 ^https?:\/\/vip1\.kuwo\.cn\/vip\/enc\/user\/vip\?op=ui url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
 # > 酷我音乐_新版vip接口2
@@ -55,11 +55,11 @@ https?:\/\/appi\.kuwo\.cn\/kuwopay\/vip-tab\/setting url script-response-body ht
 # > 酷我音乐_皮肤解锁
 ^https?:\/\/vip1\.kuwo\.cn\/vip\/v2\/theme url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
 
+# > 酷我音乐_数字专辑
+^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?newver url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
 # > 酷我音乐_无损下载[限纯净版]
-//^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?ui url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
-# > 酷我音乐_无损下载[限纯净版]
-^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?ui url request-header uid=\d+ request-header uid=6 
-*/
+^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?ui url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
+//^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?ui url request-header uid=\d+ request-header uid=6
 
 
 var method = $request.method;
@@ -73,7 +73,13 @@ if (url.indexOf("mgxhtj.kuwo.cn") != -1) {
 
 //搜索框处理
 if (url.indexOf("searchrecterm.kuwo.cn") != -1) {
-	let obj = {"content": [{"query_word": "搜索","desc": ""}]};
+	let obj = {
+		"content": [{
+				"query_word": "搜索",
+				"desc": ""
+			}
+		]
+	};
 	body = JSON.stringify(obj);
 }
 
@@ -94,7 +100,21 @@ if (url.indexOf("kuwopay/vip-tab/page/cells") != -1) {
 //去除会员页顶部广告tab
 if (url.indexOf("kuwopay/vip-tab/setting") != -1) {
 	let obj = JSON.parse(body);
-	obj.data ? .["tab"] ? .["vipTypes"] && (obj.data.tab.vipTypes = [{"_id": "63bd4b1002539ab74ca789df","title": "会员","type": "svip","description": "会员","topics": [{"mainBgColor": "#3C2D08","title": "精选","navId": "63bd4b1002539ab74ca789df","deputyBgColor": "#111111","url": "https://m.kuwo.cn/viptab/"}]}]);
+	obj.data ? .["tab"] ? .["vipTypes"] && (obj.data.tab.vipTypes = [{
+				"_id": "63bd4b1002539ab74ca789df",
+				"title": "会员",
+				"type": "svip",
+				"description": "会员",
+				"topics": [{
+						"mainBgColor": "#3C2D08",
+						"title": "精选",
+						"navId": "63bd4b1002539ab74ca789df",
+						"deputyBgColor": "#111111",
+						"url": "https://m.kuwo.cn/viptab/"
+					}
+				]
+			}
+		]);
 	body = JSON.stringify(obj);
 }
 
@@ -114,7 +134,32 @@ if (/vip\/v2\/theme/.test(url)) {
 //新版vip接口2
 if (/vip\/v2\/userbase\/vip/.test(url)) {
 	let obj = JSON.parse(body);
-	obj.data ? .["vipui"] && (obj.data.vipui = {"vipIcon": "https://image.kuwo.cn/fe/f2d09ac0-b959-404f-86fa-dc65c715c0e96.png","iconJumpUrl": "http://vip1.kuwo.cn/vip/vue/anPay/pay/index.html?pageType=avip&MBOX_WEBCLOSE=1&FULLHASARROW=1","growthValue": "21600","vipTag": "VIP6","vipOverSeasExpire": "0","time": "4000000000000","goSvipPage": "1","isNewUser": "1","vipmIcon": "https://image.kuwo.cn/fe/34ad47f8-da7f-43e4-abdc-e6c995666368yyb.png","svipIcon": "https://image.kuwo.cn/fe/f2d09ac0-b959-404f-86fa-dc65c715c0e96.png","vipmExpire": "4000000000000","biedSong": "0","luxuryIcon": "https://image.kuwo.cn/fe/2fae68ff-de2d-4473-bf28-8efc29e44968vip.png","userType": "3","isYearUser": "2","vip3Expire": "0","experienceExpire": "0","luxAutoPayUser": "2","biedAlbum": "1","vipLuxuryExpire": "4000000000000","vipmAutoPayUser": "2","svipAutoPayUser": "2","vipExpire": "4000000000000","svipExpire": "4000000000000"});
+	obj.data ? .["vipui"] && (obj.data.vipui = {
+			"vipIcon": "https://image.kuwo.cn/fe/f2d09ac0-b959-404f-86fa-dc65c715c0e96.png",
+			"iconJumpUrl": "http://vip1.kuwo.cn/vip/vue/anPay/pay/index.html?pageType=avip&MBOX_WEBCLOSE=1&FULLHASARROW=1",
+			"growthValue": "21600",
+			"vipTag": "VIP6",
+			"vipOverSeasExpire": "0",
+			"time": "4000000000000",
+			"goSvipPage": "1",
+			"isNewUser": "1",
+			"vipmIcon": "https://image.kuwo.cn/fe/34ad47f8-da7f-43e4-abdc-e6c995666368yyb.png",
+			"svipIcon": "https://image.kuwo.cn/fe/f2d09ac0-b959-404f-86fa-dc65c715c0e96.png",
+			"vipmExpire": "4000000000000",
+			"biedSong": "0",
+			"luxuryIcon": "https://image.kuwo.cn/fe/2fae68ff-de2d-4473-bf28-8efc29e44968vip.png",
+			"userType": "3",
+			"isYearUser": "2",
+			"vip3Expire": "0",
+			"experienceExpire": "0",
+			"luxAutoPayUser": "2",
+			"biedAlbum": "1",
+			"vipLuxuryExpire": "4000000000000",
+			"vipmAutoPayUser": "2",
+			"svipAutoPayUser": "2",
+			"vipExpire": "4000000000000",
+			"svipExpire": "4000000000000"
+		});
 	obj.data ? .["tsui"] && (obj.data.tsui = "{\"timestamp\":1674205529,\"packs\":{\"type\":0,\"end\":4000000000,\"period\":1,\"bought_vip\":1,\"bought_vip_end\":4000000000},\"result\":\"ok\"}");
 	body = JSON.stringify(obj);
 }
@@ -148,7 +193,9 @@ if (/v2\/api\/pay\/vip\/extraVipStatus/.test(url)) {
 //无损下载[限纯净版]
 if (/music\.pay\?uid=.*/.test(url)) {
 	let url = url.replace(/uid=\d+/g, "uid=6");
-	$done({"url": url});
+	$done({
+		"url": url
+	});
 }
 
 //新版vip接口1
@@ -164,9 +211,35 @@ if (/music\.pay/.test(url)) {
 			huihui.st = 0;
 		});
 		let audio = obj.songs[0].audio[0];
-		obj.user[0] = {"info": obj.songs[0],"id": obj.songs[0].id,"pid": audio.pid,"price": audio.price,"type": audio.policy,"name": audio.policy + "_1","categray": audio.policy + "_1","order": 375787919,"final": [],"buy": 1657425321,"begin": 1657425321,"end": 4180305321,"CurEnd": 0,"playCnt": 0,"playUpper": 300,"downCnt": 0,"downUpper": 300,"playVideoCnt": 0,"playVideoUpper": 3000,"downVideoCnt": 0,"downVideoUpper": 3000,"period": 1000,"feetype": 0};
+		obj.user[0] = {
+			"info": obj.songs[0],
+			"id": obj.songs[0].id,
+			"pid": audio.pid,
+			"price": audio.price,
+			"type": audio.policy,
+			"name": audio.policy + "_1",
+			"categray": audio.policy + "_1",
+			"order": 375787919,
+			"final": [],
+			"buy": 1657425321,
+			"begin": 1657425321,
+			"end": 4180305321,
+			"CurEnd": 0,
+			"playCnt": 0,
+			"playUpper": 300,
+			"downCnt": 0,
+			"downUpper": 300,
+			"playVideoCnt": 0,
+			"playVideoUpper": 3000,
+			"downVideoCnt": 0,
+			"downVideoUpper": 3000,
+			"period": 1000,
+			"feetype": 0
+		};
 		body = JSON.stringify(obj);
 	}
 }
 
-$done({"body" : body});
+$done({
+	"body" : body
+});
