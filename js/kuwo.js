@@ -1,4 +1,4 @@
-
+/* 
 // ==UserScript==
 // @ScriptName        酷我音乐、酷我音乐纯净版[ SVIP+净化 ]
 // @Attention         史上最全酷我音乐净化加VIP音乐畅听，已兼容酷我原版与酷我畅听版
@@ -58,7 +58,8 @@ https?:\/\/appi\.kuwo\.cn\/kuwopay\/vip-tab\/setting url script-response-body ht
 # > 酷我音乐_数字专辑
 ^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?newver url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
 # > 酷我音乐_无损下载[限纯净版]
-^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?ui url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js
+^https?:\/\/musicpay\.kuwo\.cn\/music\.pay\?ui url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/js/kuwo.js 
+*/
 
 
 var method = $request.method;
