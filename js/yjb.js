@@ -27,10 +27,10 @@ WX   https://wx.yangjibao.com/fund_gz_source
 
 ====================================
 [rewrite_local]
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)app_config$ url reject-dict
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)scroll_list$ url reject-dict
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)vip_information\?page=\d$ url reject-dict
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)unify_ad$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)app_config$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 [mtim]
