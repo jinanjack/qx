@@ -8,22 +8,26 @@ hostname = buy.itunes.apple.com , asia-east2-slidebox-ios-prod.cloudfunctions.ne
 
 # > slidebox
 #hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
-^https:\/\/asia-east2-slidebox-ios-prod\.cloudfunctions\.net\/api_v1$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/slidebox.js
+^https?:\/\/asia-east2-slidebox-ios-prod\.cloudfunctions\.net\/api_v1$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/slidebox.js
 
 # > yangjibao [app-api.yangjibao.com , wx.yangjibao.com]
 #hostname = *.yangjibao.com
-^https:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)app_config$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)scroll_list$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)vip_information\?page=\d$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi)unify_ad$ url reject-dict
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 # > 七猫小说
 # hostname = *.wtzw.com
-^https:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
+^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
 
 # > 扫描全能王
 # hostname = ap*.intsig.net
-^https:\/\/api(|-cs)\.intsig\.net\/purchase\/cs\/query_property\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/CamScanner.js
+^https?:\/\/api(|-cs)\.intsig\.net\/purchase\/cs\/query_property\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/CamScanner.js
 
 # > Nicegram
 # hostname = restore-access.indream.app
 # 用echo-response替换text/json资源
-^https:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d{5,10} url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/Nicegram.js
+^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d{5,10} url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/Nicegram.js
 
