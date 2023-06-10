@@ -1,0 +1,16 @@
+{
+    "id": "huihui.app",
+    "name": "灰灰应用订阅",
+    "author": "@wangfei021325",
+    "icon": "",
+    "repo": "https://github.com/chavyleung/scripts",
+    "apps": [{
+        "id": "smzdm",
+        "name": "什么值得买",
+        "keys": ["chavy_cookie_smzdm"],
+        "author": "@wangfei021325, ",
+        "repo": "https://github.com/chavyleung/scripts/tree/master/smzdm",
+        "script": "https://raw.githubusercontent.com/wf021325/qx/master/js/smzdm.js",
+        "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/Alpha/smzdm.png", "https://raw.githubusercontent.com/Orz-3/mini/master/Color/smzdm.png"]
+    }]
+}
