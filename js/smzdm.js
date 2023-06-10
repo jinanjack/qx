@@ -61,6 +61,10 @@ function signapp() {
     })
   })
 }
+function getVersion() {
+  const [, token] = $.VAL_cookies.match(/smzdm_version=(.*?);/)
+  return token
+}
 
 function getToken() {
   const [, token] = $.VAL_cookies.match(/sess=(.*?);/)
@@ -68,8 +72,7 @@ function getToken() {
 }
 
 function getAppSign(t) {
-  //const sign = 'f=android&sk=1&time=' + t + '&token=' + getToken() + '&v=10.0&weixin=0&key=apr1$AwP!wRRT$gJ/q.X24poeBInlUJC'
-  const sign = 'basic_v=0&f=android&time='+ t +'&token=' +getToken() + '&v=10.4.47&weixin=0&key=apr1$AwP!wRRT$gJ/q.X24poeBInlUJC'
+  const sign = 'f=android&time=' + t + '&token=' + getToken() + '&v=' + getVersion() + '&weixin=0&key=apr1$AwP!wRRT$gJ/q.X24poeBInlUJC'
   return $.CryptoJS.MD5(sign).toString().toUpperCase()
 }
 
@@ -77,8 +80,7 @@ function getBody() {
   const t = new Date().getTime()
   const token = getToken()
   const sign = getAppSign(t)
-  //return 'touchstone_event=&v=10.0&sign=' + sign + '&weixin=0&time=' + t + '&sk=1&token=' + token + '&f=android&captcha='
-  return 'touchstone_event=&v=10.4.47&sign=' + sign + '&weixin=0&time=' + t + '&token=' + token + '&basic_v=0&f=android&captcha='
+  return 'touchstone_event=&v=' + getVersion() + '&sign=' + sign + '&weixin=0&time=' + t + '&token=' + token + '&f=android&captcha='
 }
 
 function showmsg() {
