@@ -62,8 +62,8 @@ function signapp() {
   })
 }
 function getVersion() {
-  const [, token] = $.VAL_cookies.match(/smzdm_version=(.*?);/)
-  return token
+  const [, smzdm_version] = $.VAL_cookies.match(/smzdm_version=(.*?);/)
+  return smzdm_version
 }
 
 function getToken() {
