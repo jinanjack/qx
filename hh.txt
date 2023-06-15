@@ -29,4 +29,4 @@ hostname = buy.itunes.apple.com , asia-east2-slidebox-ios-prod.cloudfunctions.ne
 # > Nicegram
 # hostname = restore-access.indream.app
 # 用echo-response替换text/json资源
-^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d+$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/Nicegram.js
+^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d+$ url script-echo-response https://raw.githubusercontent.com/wf021325/qx/master/js/Nicegram.js
