@@ -235,7 +235,7 @@ $done({"body": body});
 //无损下载[限纯净版]
 //http://musicpay.kuwo.cn/music.pay?uid=554118269&sid=522951498&ver=kwplayersimple_ip_1.0.2.0&src=kwplayersimple_ip_1.0.2.0_TJ.ipa&op=bought&ptype=vip&ids=0&deviceUID=c8a56b3ea42c432b8a0bd886656c1e37&signver=new&newver=3
 if (/music\.pay\?uid=.*/.test(url)) {
-	var url = url.replace(/uid=\d+/g, "uid=6");
+	url = url.replace(/uid=\d+/g, "uid=6");
 	console.log("无损下载[限纯净版]");
 	$done({"url": url});
 }
