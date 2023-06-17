@@ -1,5 +1,4 @@
 /* 
-// ==UserScript==
 // @ScriptName        酷我音乐10.4.6、酷我音乐纯净版[ SVIP+净化 ]
 //解决酷我发热问题，在本地添加下面的分流或者关闭广告终结者Anti分流
 //host-suffix, kuwo.cn, direct
@@ -63,20 +62,21 @@ let method = $request.method;
 let url = $request.url;
 var body = $response.body;
 
-//去除首页轮播广告和tips
-if (url.indexOf("mgxhtj.kuwo.cn") != -1) {
-	body = body.replace(/\<userinfolabel.*?\/\>/g, "").replace(/\<ad.*?\/\>/g, "");
-	console.log("去除首页轮播广告和tips");
-}
 
-//搜索框处理
+去除首页轮播广告和tips
+// if (url.indexOf("mgxhtj.kuwo.cn") != -1) {
+	// body = body.replace(/\<userinfolabel.*?\/\>/g, "").replace(/\<ad.*?\/\>/g, "");
+	// console.log("去除首页轮播广告和tips");
+// }
+
+/* //搜索框处理
 if (url.indexOf("searchrecterm.kuwo.cn") != -1) {
 	let obj = {"content": [{"query_word": "搜索","desc": ""}]};
 	body = JSON.stringify(obj);
 	console.log("搜索框处理");
 }
-
-//去除会员页广告
+ */
+/* //去除会员页广告
 if (url.indexOf("kuwopay/vip-tab/page/cells") != -1) {
 	let obj = JSON.parse(body);
 	obj.data.filter(Element => {
@@ -86,9 +86,9 @@ if (url.indexOf("kuwopay/vip-tab/page/cells") != -1) {
 	if (obj.data && obj.data[0] ? .["type"] == "VipCard") obj.data[0].data.noVip = ["https://t.me/ddgksf2021"];
 	body = JSON.stringify(obj);
 	console.log("去除会员页广告");
-}
+} */
 
-//去除会员页顶部广告tab
+/* //去除会员页顶部广告tab
 if (url.indexOf("kuwopay/vip-tab/setting") != -1) {
 	let obj = JSON.parse(body);
 	obj.data ? .["tab"] ? .["vipTypes"] && (obj.data.tab.vipTypes = [{
@@ -100,24 +100,24 @@ if (url.indexOf("kuwopay/vip-tab/setting") != -1) {
 	}]);
 	body = JSON.stringify(obj);
 	console.log("去除会员页顶部广告tab");
-}
+} */
 
-//开屏广告
+/* //开屏广告
 if (url.indexOf("rich.kuwo.cn/AdService") != -1) {
 	body = body.replace(/"url"/g, "\"URL\"").replace(/last_time":\d+/g, "last_time\":1");\
 	console.log("开屏广告");
-}
+} */
 
-//皮肤解锁
+/* //皮肤解锁
 if (/vip\/v2\/theme/.test(url)) {
 	let obj = JSON.parse(body);
 	obj.data.vipTheme.type = "free";
 	obj.data.needBieds = [];
 	body = JSON.stringify(obj);
 	console.log("皮肤解锁");
-}
+} */
 
-//新版vip接口2
+/* //新版vip接口2
 //https://vip1.kuwo.cn/vip/v2/userbase/vip?op=iosWeChatPay&uid=554118269&sid=1947646089&deviceId=2561741100&fromsrc=box_noPic_download&source=kwplayersimple_ip_1.0.2.0_TJ.ipa
 //{"data":{"isWeiChatUser":0},"ctime":1685948067301,"meta":{"desc":"成功","code":200}} 
 if (/vip\/v2\/userbase\/vip/.test(url)) {
@@ -151,7 +151,7 @@ if (/vip\/v2\/userbase\/vip/.test(url)) {
 	obj.data ? .["tsui"] && (obj.data.tsui = "{\"timestamp\":1674205529,\"packs\":{\"type\":0,\"end\":4000000000,\"period\":1,\"bought_vip\":1,\"bought_vip_end\":4000000000},\"result\":\"ok\"}");
 	body = JSON.stringify(obj);
 	console.log("新版vip接口2");
-}
+} */
 
 //旧版vip接口
 //http://vip1.kuwo.cn/vip/v2/user/vip?op=ui&uid=554118269&sid=522951498&signver=new
@@ -169,19 +169,19 @@ if (/vip\/v2\/user\/vip/.test(url)) {
 	console.log("旧版vip接口");
 }
 
-//听书权限接口1
+/* //听书权限接口1
 if (/a\.p/.test(url)) {
-	body = body.replace(/"type":\d*/g, "\"type\":2").replace(/"end":\d*/g, "\"end\":4811209694").replace(/"period":\d*/g, "\"period\":111").replace(/"bought_vip":\d*/g, "\"bought_vip\":1").replace(/"bought_vip_end":\d*/g, "\"bought_vip_end\":4811209694").replace(/"limitfree":\d*/g, "\"limitfree\":1").replace(/"playable":\d*/g, "\"playable\":1").replace(/"downable":\d*/g, "\"downable\":1").replace(/"playright":\d*/g, "\"playright\":1").replace(/"downright":\d*/g, "\"downright\":1").replace(/"policytype":\d*/g, "\"policytype\":1").replace(/"policy":\d*/g, "\"policy\":1");
+	body = body.replace(/"type":\d+/g, "\"type\":2").replace(/"end":\d+/g, "\"end\":4811209694").replace(/"period":\d+/g, "\"period\":111").replace(/"bought_vip":\d+/g, "\"bought_vip\":1").replace(/"bought_vip_end":\d+/g, "\"bought_vip_end\":4811209694").replace(/"limitfree":\d+/g, "\"limitfree\":1").replace(/"playable":\d+/g, "\"playable\":1").replace(/"downable":\d+/g, "\"downable\":1").replace(/"playright":\d+/g, "\"playright\":1").replace(/"downright":\d+/g, "\"downright\":1").replace(/"policytype":\d+/g, "\"policytype\":1").replace(/"policy":\d+/g, "\"policy\":1");
 	console.log("听书权限接口1");
-}
+} */
 
-//听书权限接口2
+/* //听书权限接口2
 if (/v2\/api\/pay\/vip\/extraVipStatus/.test(url)) {
 	let obj = JSON.parse(body);
 	obj.data.isbuyVip = 1;
 	body = JSON.stringify(obj);
 	console.log("听书权限接口2");
-}
+} */
 
 //新版vip接口1
 if (/vip\/enc\/user/.test(url)) {
@@ -190,7 +190,7 @@ if (/vip\/enc\/user/.test(url)) {
 }
 
 
-//数字专辑
+/* //数字专辑
 if (/music\.pay/.test(url)) {
 	if (method == "POST" && body.includes("audio")) {
 		let obj = JSON.parse(body);
@@ -227,7 +227,7 @@ if (/music\.pay/.test(url)) {
 		console.log("数字专辑_内");
 	}
 	console.log("数字专辑_外");
-}
+} */
 
 $done({"body": body});
 
