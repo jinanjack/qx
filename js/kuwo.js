@@ -1,13 +1,6 @@
 /* 
 // ==UserScript==
-// @ScriptName        酷我音乐、酷我音乐纯净版[ SVIP+净化 ]
-// @Attention         史上最全酷我音乐净化加VIP音乐畅听，已兼容酷我原版与酷我畅听版
-// @Author            @ddgksf2013
-// @WechatID          公众号墨鱼手记
-// @TgChannel         https://t.me/ddgksf2021
-// @Contribute        https://t.me/ddgksf2013_bot
-// @Feedback          📮 ddgksf2013@163.com 📮
-// @UpdateTime        2023-04-12
+// @ScriptName        酷我音乐10.4.6、酷我音乐纯净版[ SVIP+净化 ]
 //解决酷我发热问题，在本地添加下面的分流或者关闭广告终结者Anti分流
 //host-suffix, kuwo.cn, direct
 
@@ -63,8 +56,8 @@ https?:\/\/appi\.kuwo\.cn\/kuwopay\/vip-tab\/setting url script-response-body ht
 
 
 
-const isQuanX = typeof $task !== "undefined";
-!isQuanX && $done({});
+/* const isQuanX = typeof $task !== "undefined";
+!isQuanX && $done({}); */
 
 let method = $request.method;
 let url = $request.url;
@@ -73,12 +66,14 @@ var body = $response.body;
 //去除首页轮播广告和tips
 if (url.indexOf("mgxhtj.kuwo.cn") != -1) {
 	body = body.replace(/\<userinfolabel.*?\/\>/g, "").replace(/\<ad.*?\/\>/g, "");
+	console.log("去除首页轮播广告和tips");
 }
 
 //搜索框处理
 if (url.indexOf("searchrecterm.kuwo.cn") != -1) {
 	let obj = {"content": [{"query_word": "搜索","desc": ""}]};
 	body = JSON.stringify(obj);
+	console.log("搜索框处理");
 }
 
 //去除会员页广告
@@ -90,6 +85,7 @@ if (url.indexOf("kuwopay/vip-tab/page/cells") != -1) {
 	});
 	if (obj.data && obj.data[0] ? .["type"] == "VipCard") obj.data[0].data.noVip = ["https://t.me/ddgksf2021"];
 	body = JSON.stringify(obj);
+	console.log("去除会员页广告");
 }
 
 //去除会员页顶部广告tab
@@ -103,11 +99,13 @@ if (url.indexOf("kuwopay/vip-tab/setting") != -1) {
 		"topics": [{"mainBgColor": "#3C2D08","title": "精选","navId": "63bd4b1002539ab74ca789df","deputyBgColor": "#111111","url": "https://m.kuwo.cn/viptab/"}]
 	}]);
 	body = JSON.stringify(obj);
+	console.log("去除会员页顶部广告tab");
 }
 
 //开屏广告
 if (url.indexOf("rich.kuwo.cn/AdService") != -1) {
-	body = body.replace(/"url"/g, "\"URL\"").replace(/last_time":\d+/g, "last_time\":1");
+	body = body.replace(/"url"/g, "\"URL\"").replace(/last_time":\d+/g, "last_time\":1");\
+	console.log("开屏广告");
 }
 
 //皮肤解锁
@@ -116,6 +114,7 @@ if (/vip\/v2\/theme/.test(url)) {
 	obj.data.vipTheme.type = "free";
 	obj.data.needBieds = [];
 	body = JSON.stringify(obj);
+	console.log("皮肤解锁");
 }
 
 //新版vip接口2
@@ -151,6 +150,7 @@ if (/vip\/v2\/userbase\/vip/.test(url)) {
 	});
 	obj.data ? .["tsui"] && (obj.data.tsui = "{\"timestamp\":1674205529,\"packs\":{\"type\":0,\"end\":4000000000,\"period\":1,\"bought_vip\":1,\"bought_vip_end\":4000000000},\"result\":\"ok\"}");
 	body = JSON.stringify(obj);
+	console.log("新版vip接口2");
 }
 
 //旧版vip接口
@@ -166,11 +166,13 @@ if (/vip\/v2\/user\/vip/.test(url)) {
 	obj.data.vipExpire = "4000000000000";
 	obj.data.vip3Expire = "4000000000000";
 	body = JSON.stringify(obj);
+	console.log("旧版vip接口");
 }
 
 //听书权限接口1
 if (/a\.p/.test(url)) {
 	body = body.replace(/"type":\d*/g, "\"type\":2").replace(/"end":\d*/g, "\"end\":4811209694").replace(/"period":\d*/g, "\"period\":111").replace(/"bought_vip":\d*/g, "\"bought_vip\":1").replace(/"bought_vip_end":\d*/g, "\"bought_vip_end\":4811209694").replace(/"limitfree":\d*/g, "\"limitfree\":1").replace(/"playable":\d*/g, "\"playable\":1").replace(/"downable":\d*/g, "\"downable\":1").replace(/"playright":\d*/g, "\"playright\":1").replace(/"downright":\d*/g, "\"downright\":1").replace(/"policytype":\d*/g, "\"policytype\":1").replace(/"policy":\d*/g, "\"policy\":1");
+	console.log("听书权限接口1");
 }
 
 //听书权限接口2
@@ -178,11 +180,13 @@ if (/v2\/api\/pay\/vip\/extraVipStatus/.test(url)) {
 	let obj = JSON.parse(body);
 	obj.data.isbuyVip = 1;
 	body = JSON.stringify(obj);
+	console.log("听书权限接口2");
 }
 
 //新版vip接口1
 if (/vip\/enc\/user/.test(url)) {
 	body = "Vo4m6X2hTph/vfpPmau8PTT0sFN6JCgzxSLVH/u3sbEt7VniYsVHbRFgOgN+Uvs39rAI7R3C5HVpaSj8tr8U8dLYwYdDCjMILuUorh3z0BiQToiWxudHkcASIPHNrmZHZYC/yv3DP4b89hbzfqU5UUDUqaZpEBZr76sDF2wNPmYjUEFSVCMGyTl1F6j1DBmKJ1Tik0YuG/2UBa/Ilz12a1KneXsNs5x5EE41bXDke7EygIB3I+6SoITZXOLFAFQFZujdI0GzClNglDKtclpUxpjN3uVeJxHLU40FTwNWo3ZDNv8KSdZpYZ5BDEOCyZkifmHlf1wnocX2zTr2xRAM6JhAD2WaSSNQQVJUI5lv72QNZSN43Pj/qdzatHQP4Pp/H1YxyP36rv3qBcnnJy/55YouIczRc3eJjXExRgo54qdyTYRMYoS9GzNn/edR3hSNnMn9PnElBCfZhkL0R5kZ9JBFCM3vNOy7Cnp6RVyAG0GFHv/g2q1yqkJxibyDro5nlnnvHjhZrsOvSvTXI1BBUlQjGoRqqCTDUvHLoiNwWMoKKfxtswWQiXjoQ6mL5dazxjUsbsHzC1N8YNMVtzf8gBryr3nMWS44wyUpi1/0WhGTRW1wsCllO1DB24+ibTFH/yftWN+/apM9vbQAkc/J+aFy/01plK7rsGNwWYYKG0sr6CS8dGQzy0On6aFo07hiU+wjUEFSVCOf/wKzzX5Cn/OLMKeVa1BPDxV5tm39vCrsxIG6T29VHWx8ck93S/nXCm2dHfojuLySZKJ50B1FaN5uFIY+LA1RbO/0sL+CoSJhoNOLibzt75c5dleW+lbwxLAAdBh5AFq4Z1Uj8bPjm5mHcGWQuBAyZIO+ie8wP4yvWwQFf1ENJiNQQVJUIzwCo22cpAtoAzYZWm3XFPfSlov4G15JGaaHL2X5FG5BTeUwwbBiQfwUpcb6oT8dbIKh2SsUZCeJZW43lLI0UIo9u3y1+P4GMtOKEZ7Sx0aQ3ewknthU2tpL0gnykFtiEtKBxcfHjJEen158zVXrbxxC0W35SmaYOOwgAmEMfxwHI1BBUlQjhVUHnBabnJcnmXCICcyUBglrZkXcNLwg91p4889vKFTLlzROHTt20UzjfKWsNK3U8pYgKYXPbQtSzIuRheEEQDFhLvEhIGKaB6yDoacDLJZ0jgFRIKKFBkbK0VE4nIABi1qgQOXvq1sG4QeupjfEWYqMX8EyyqPHrsDiCltAF1wjUEFSVCNybeUusnxJF2zswj8xQtfPiwfDj3TwKWxKXCmkheqHy7/0Qpyc84xWvq+YXktsU97wUZLHrgJmARudJmQNEwAweIdHMafcwreBy731z6kGLojy5TLgTN7XSm5Ar+hgOW+1ZwkWLyrVvaCdO/8/zdYl1w/PQUCs6dw0ThIeahwjpQ==";
+	console.log("新版vip接口1");
 }
 
 
@@ -220,7 +224,9 @@ if (/music\.pay/.test(url)) {
 			"feetype": 0
 		};
 		body = JSON.stringify(obj);
+		console.log("数字专辑_内");
 	}
+	console.log("数字专辑_外");
 }
 
 $done({"body": body});
@@ -230,6 +236,7 @@ $done({"body": body});
 //http://musicpay.kuwo.cn/music.pay?uid=554118269&sid=522951498&ver=kwplayersimple_ip_1.0.2.0&src=kwplayersimple_ip_1.0.2.0_TJ.ipa&op=bought&ptype=vip&ids=0&deviceUID=c8a56b3ea42c432b8a0bd886656c1e37&signver=new&newver=3
 if (/music\.pay\?uid=.*/.test(url)) {
 	var url = url.replace(/uid=\d+/g, "uid=6");
+	console.log("无损下载[限纯净版]");
 	$done({"url": url});
 }
 
