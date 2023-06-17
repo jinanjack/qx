@@ -60,7 +60,8 @@ https?:\/\/appi\.kuwo\.cn\/kuwopay\/vip-tab\/setting url script-response-body ht
 
 let method = $request.method;
 let url = $request.url;
-var body = $response.body;
+let body = $response.body;
+
 
 
 /* //去除首页轮播广告和tips
