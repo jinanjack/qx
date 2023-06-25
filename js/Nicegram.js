@@ -36,12 +36,12 @@ if (b) {
 } */
 
 
-const _res = {
+const res = {
 	status : 'HTTP/1.1 200 OK',
-	headers : {'Content-Type': 'application/json'},
-	body : {"data": {"premiumAccess": true}}
+	headers : {'Content-Type':'application/json'},
+	body : '{"data": {"premiumAccess": true}}'
 }
 
-$done(_res);
+$done(res);
 
 
