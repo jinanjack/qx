@@ -7,7 +7,7 @@ Nicegram
 [mtim]
 hostname = restore-access.indream.app
 ====================================
-
+ */
 const res = {
 	status : 'HTTP/1.1 200 OK',
 	headers : {'Content-Type':'application/json'},
