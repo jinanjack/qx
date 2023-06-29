@@ -33,7 +33,7 @@ WX   https://wx.yangjibao.com/fund_gz_source
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
 
 # 会员页下部
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-200
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-dict
 
 # 首页广告
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
