@@ -1,32 +1,36 @@
 #总hostname下面的都要屏蔽
 hostname = buy.itunes.apple.com , asia-east2-slidebox-ios-prod.cloudfunctions.net , *.yangjibao.com , *.wtzw.com , ap*.intsig.net , restore-access.indream.app , 
-# 备注----#itunes----------------slidebox------------------------------------------#yangjibao---------#七猫-------#扫描全能王------#Nicegram
+# 备注----#itunes----------------slidebox------------------------------------------#yangjibao---------#七猫-------#扫描全能王------#Nicegram------------------
 
-# >iTunes
+# >>> iTunes
 # hostname = buy.itunes.apple.com
 ^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/iTunes.js
 
-# > slidebox
+# >>> slidebox
 #hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
 ^https?:\/\/asia-east2-slidebox-ios-prod\.cloudfunctions\.net\/api_v1$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/slidebox.js
 
-# > yangjibao [app-api.yangjibao.com , wx.yangjibao.com]
+# >>> yangjibao [app-api.yangjibao.com , wx.yangjibao.com]
 #hostname = *.yangjibao.com
+# 万1开户
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)app_config$ url reject-dict
+# 开户推广
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-dict
+# 会员页下部
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-200
+# 首页广告
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
-# > 七猫小说
+# >>> 七猫小说
 # hostname = *.wtzw.com
 ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
 
-# > 扫描全能王
+# >>> 扫描全能王
 # hostname = ap*.intsig.net
 ^https?:\/\/api(|-cs)\.intsig\.net\/purchase\/cs\/query_property\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/CamScanner.js
 
-# > Nicegram
+# >>> Nicegram
 # hostname = restore-access.indream.app
 ^https?:\/\/restore-access\.indream\.app\/restoreAccess\?id=\d{5,10} url script-echo-response https://raw.githubusercontent.com/wf021325/qx/master/js/Nicegram.js
 

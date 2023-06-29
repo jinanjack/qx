@@ -26,15 +26,16 @@ WX   https://wx.yangjibao.com/fund_gz_source
 
 ====================================
 [rewrite_local]
-#万1开户
+# 万1开户
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)app_config$ url reject-dict
 
-#开户推广
+# 开户推广
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
 
-#会员页下部
+# 会员页下部
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-200
 
+# 首页广告
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
 
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
