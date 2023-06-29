@@ -24,21 +24,22 @@ https://wx.yangjibao.com/wxapi/fund_holdup_ranking
 APP  https://app-api.yangjibao.com/fund_gz_source
 WX   https://wx.yangjibao.com/fund_gz_source
 
+#会员页下部
+https://app-api.yangjibao.com/vip_information?page=1
+https://wx.yangjibao.com/wxapi/vip_information?page=1
+
 ====================================
 [rewrite_local]
-# 万1开户
+# 会员_万1开户
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)app_config$ url reject-dict
 
-# 开户推广
+# 我的_开户推广
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
 
-# 会员页下部
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-dict
-
-# 首页广告
+# 持有_顶部广告
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
 
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source|vip_information\?page=\d$) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 [mitm]
 hostname = *.yangjibao.com
@@ -63,6 +64,7 @@ if (url.indexOf('_ranking') != -1) {
 	body = JSON.stringify(obj);
 }
 
+//会员页下部信息
 if (url.indexOf('/vip_information') != -1) {
 	let obj = JSON.parse(body);
 	obj.data.list = [];
