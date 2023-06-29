@@ -1,32 +1,28 @@
 /*
 
 # 用户信息
-APP  https://app-api.yangjibao.com/account
-WX   https://wx.yangjibao.com/wxapi/account
+/account
 
 # VIP
-APP  https://app-api.yangjibao.com/vip_info
+/vip_info
 
-# 加cang榜单APP&WX
-WX   https://wx.yangjibao.com/wxapi/fund_buy_ranking
+# 加cang榜单
+/fund_buy_ranking
 
 # 减cang
-WX   https://wx.yangjibao.com/wxapi/fund_sell_ranking
+/fund_sell_ranking
 
 # 持有
-APP  https://app-api.yangjibao.com/fund_hold_ranking
-WX   https://wx.yangjibao.com/wxapi/fund_hold_ranking
+/fund_hold_ranking
 
-# 飙升榜APP&WX
-https://wx.yangjibao.com/wxapi/fund_holdup_ranking
+# 飙升榜
+/fund_holdup_ranking
 
-# 切换源APP&WX
-APP  https://app-api.yangjibao.com/fund_gz_source
-WX   https://wx.yangjibao.com/fund_gz_source
+# 切换源
+/fund_gz_source
 
-#会员页下部
-https://app-api.yangjibao.com/vip_information?page=1
-https://wx.yangjibao.com/wxapi/vip_information?page=1
+# 会员页下部
+/vip_information?page=1
 
 ====================================
 [rewrite_local]
@@ -39,7 +35,7 @@ https://wx.yangjibao.com/wxapi/vip_information?page=1
 # 持有_顶部广告
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
 
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source|vip_information\?page=\d$) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 [mitm]
 hostname = *.yangjibao.com
@@ -64,7 +60,7 @@ if (url.indexOf('_ranking') != -1) {
 	body = JSON.stringify(obj);
 }
 
-//会员页下部信息
+//会员页下部信息 [vip_info 包含 vip_information]
 if (url.indexOf('/vip_information') != -1) {
 	let obj = JSON.parse(body);
 	obj.data.list = [];

@@ -18,7 +18,7 @@ hostname = buy.itunes.apple.com , asia-east2-slidebox-ios-prod.cloudfunctions.ne
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
 # 持有_顶部广告
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_\w+_ranking|fund_gz_source|vip_information) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_\w+_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
 # >>> 七猫小说
 # hostname = *.wtzw.com
