@@ -63,6 +63,11 @@ if (url.indexOf('_ranking') != -1) {
 	body = JSON.stringify(obj);
 }
 
+if (url.indexOf('/vip_information') != -1) {
+	let obj = JSON.parse(body);
+	obj.data.list = [];
+	body = JSON.stringify(obj);
+}
 //不可用
 if (url.indexOf('/fund_gz_source') != -1) {
 	body = '{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}}';
