@@ -5,7 +5,7 @@
 [rewrite_local]
 ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
 
-[mtim]
+[mitm]
 hostname = *.wtzw.com
 ====================================
  */

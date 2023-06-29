@@ -4,7 +4,7 @@
 [rewrite_local]
 ^https?:\/\/(h5|api)\.xiuxiu\.meitu\.com\/v\d\/(h\d\/vip|vip|user)\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/meitu.js
 
-[mtim]
+[mitm]
 hostname = *.xiuxiu.meitu.com
  */
 

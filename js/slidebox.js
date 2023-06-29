@@ -1,7 +1,7 @@
 /*
 # slidebox
 ====================================
-[mtim]
+[mitm]
 hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
 
 [rewrite_local]

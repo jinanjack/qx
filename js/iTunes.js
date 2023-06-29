@@ -4,7 +4,7 @@ iTunes
 [rewrite_local]
 ^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/iTunes.js
 
-[mtim]
+[mitm]
 hostname = buy.itunes.apple.com
 ==================================== 
 */

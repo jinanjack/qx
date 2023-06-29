@@ -4,7 +4,7 @@ CamScanner 解锁部分高级特权
 [rewrite_local]
 ^https:\/\/api(|-cs)\.intsig\.net\/purchase\/cs\/query_property\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/CamScanner.js
 
-[mtim]
+[mitm]
 hostname = ap*.intsig.net
 ====================================
 */

@@ -1,6 +1,5 @@
 /*
 
-
 # 用户信息
 APP  https://app-api.yangjibao.com/account
 WX   https://wx.yangjibao.com/wxapi/account
@@ -27,13 +26,20 @@ WX   https://wx.yangjibao.com/fund_gz_source
 
 ====================================
 [rewrite_local]
+#万1开户
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)app_config$ url reject-dict
+
+#开户推广
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)scroll_list$ url reject-dict
-^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-dict
+
+#会员页下部
+^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)vip_information\?page=\d$ url reject-200
+
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)unify_ad$ url reject-dict
+
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)(account|vip_info|fund_(hold(|up)|buy|sell)_ranking|fund_gz_source) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/yjb.js
 
-[mtim]
+[mitm]
 hostname = *.yangjibao.com
 ====================================
  */
@@ -56,7 +62,7 @@ if (url.indexOf('_ranking') != -1) {
 	body = JSON.stringify(obj);
 }
 
-//切换源,貌似不可用
+//不可用
 if (url.indexOf('/fund_gz_source') != -1) {
 	body = '{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}}';
 }
