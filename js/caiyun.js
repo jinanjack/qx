@@ -8,7 +8,7 @@ https://biz.cyapi.cn/v3/login_by_code 登录
 
 ====================================
 [rewrite_local]
-^https:\/\/biz.(caiyunapp\.com|cyapi\.cn)\/v\d\/(user\?app_name=weather|visitors|login_by_code)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
+^https:\/\/biz\.cyapi\.cn\/v\d\/(user\?app_name=weather|visitors|login_by_code)$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/caiyun.js
 
 [mitm]
 hostname = biz.cyapi.cn
