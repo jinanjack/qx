@@ -1,6 +1,5 @@
 /*
 七猫小说
-# 抄袭此脚本  https://raw.githubusercontent.com/I-am-R-E/QuantumultX/main/JavaScript/QiMaoXiaoShuo.js
 ====================================
 [rewrite_local]
 ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
