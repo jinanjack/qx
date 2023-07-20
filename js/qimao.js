@@ -13,6 +13,9 @@ hostname = *.wtzw.com
 var body = $response.body;
 var url = $request.url;
 
+if (url.indexOf('/user/get-user-info') != -1) {
+	body = body.replace(/\"is_vip\"\:\"\d\"/g, '"is_vip":"1"');
+}
 if (url.indexOf('/user/my-center') != -1) {
 	body = body.replace(/\"year_vip_show\"\:\"\d\"/g, '"year_vip_show":"1"').replace(/\"vip_show_type\"\:\"\d+\"/g, '"vip_show_type":"40"').replace(/\"is_vip\"\:\"\d\"/g, '"is_vip":"1"');
 }
