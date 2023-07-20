@@ -2,15 +2,11 @@
 hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , *.yangjibao.com , *.wtzw.com , ap*.intsig.net , restore-access.indream.app
 # 备注-----slidebox------------------------------------------#yangjibao---------#七猫-------#扫描全能王------#Nicegram-------------------
 
-# >>> iTunes
-# hostname = buy.itunes.apple.com
-# ^https?:\/\/buy\.itunes\.apple\.com\/verifyReceipt$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/iTunes.js
-
 # >>> slidebox
 #hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net
 ^https?:\/\/asia-east2-slidebox-ios-prod\.cloudfunctions\.net\/api_v1$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/slidebox.js
 
-# >>> yangjibao [app-api.yangjibao.com , wx.yangjibao.com]
+# >>> yangjibao
 #hostname = *.yangjibao.com
 # 会员_万1开户
 ^https?:\/\/(app-api|wx)\.yangjibao\.com\/(|wxapi\/)app_config$ url reject-dict
@@ -22,8 +18,7 @@ hostname = asia-east2-slidebox-ios-prod.cloudfunctions.net , *.yangjibao.com , *
 
 # >>> 七猫小说
 # hostname = *.wtzw.com
-
-^https:\/\/api-cfg\.wtzw\.com\/v\d\/\w+\/index\?ad_unit_id= url reject-dict
+# ^https:\/\/api-cfg\.wtzw\.com\/v\d\/\w+\/index\?ad_unit_id= url reject-dict
 ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
 
 # >>> 扫描全能王
