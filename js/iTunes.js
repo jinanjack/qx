@@ -10,6 +10,7 @@ hostname = buy.itunes.apple.com
 */
 
 const ua = $request.headers["User-Agent"] || $request.headers["user-agent"];
+
 const chxm1033 = {
   "environment": "Production",
   "receipt": {
@@ -82,7 +83,7 @@ const chxm1033 = {
   }],
   "latest_receipt": "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"
 };
-if (ua.indexOf("%E6%97%A5%E8%AE%B02.0") != -1) {
+if (ua.indexOf("%E6%97%A5%E8%AE%B02.0") != -1) {//日记2.0
   Body = chxm1033;
 }
 const chxm1031 = {
@@ -496,7 +497,7 @@ const chxm1026 = {
     "original_purchase_date": "2023-03-02 03:02:12 Etc/GMT"
   }]
 };
-if (ua.indexOf("%E8%B0%9C%E5%BA%95%E6%97%B6%E9%92%9F") != -1) {
+if (ua.indexOf("%E8%B0%9C%E5%BA%95%E6%97%B6%E9%92%9F") != -1) {//谜底时钟
   Body = chxm1026;
 }
 const chxm1025 = {
@@ -1617,10 +1618,10 @@ if (ua.indexOf("IDPhoto1") != -1) {
 if (ua.indexOf("TPTeleprompter") != -1) {
   Body = chxm1010;
 }
-if (ua.indexOf("ZIP%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7") != -1) {
+if (ua.indexOf("ZIP%E5%8E%8B%E7%BC%A9%E8%A7%A3%E5%8E%8B%E7%BC%A9%E5%B7%A5%E5%85%B7") != -1) {//ZIP压缩解压缩工具
   Body = chxm1010;
 }
-if (ua.indexOf("%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8") != -1) {
+if (ua.indexOf("%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%86%E5%99%A8") != -1) {//文件管理器
   Body = chxm1010;
 }
 if (ua.indexOf("SaveTik") != -1) {
@@ -1702,10 +1703,10 @@ const chxm1009 = {
     "auto_renew_status": "1"
   }]
 };
-if (ua.indexOf("%E8%AE%A1%E7%AE%97%E5%99%A8%20Air") != -1) {
+if (ua.indexOf("%E8%AE%A1%E7%AE%97%E5%99%A8%20Air") != -1) {//计算器 Air
   Body = chxm1009;
 }
-if (ua.indexOf("Translate%20Now%20Keyboard") != -1) {
+if (ua.indexOf("Translate%20Now%20Keyboard") != -1) {//Translate Now Keyboard
   Body = chxm1009;
 }
 if (ua.indexOf("%E7%AB%8B%E5%8D%B3%E7%BF%BB%E8%AF%91") != -1) {
@@ -1714,28 +1715,28 @@ if (ua.indexOf("%E7%AB%8B%E5%8D%B3%E7%BF%BB%E8%AF%91") != -1) {
 if (ua.indexOf("QrScan") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E7%BF%BB%E8%AF%91%E7%85%A7%E7%89%87") != -1) {
+if (ua.indexOf("%E7%BF%BB%E8%AF%91%E7%85%A7%E7%89%87") != -1) {//翻译照片
   Body = chxm1009;
 }
 if (ua.indexOf("Findbot") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E5%A1%AB%E8%89%B2%E6%9C%AC%20Air") != -1) {
+if (ua.indexOf("%E5%A1%AB%E8%89%B2%E6%9C%AC%20Air") != -1) {//填色本 Air
   Body = chxm1009;
 }
 if (ua.indexOf("Scanner%20Air") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E7%AC%94%E8%AE%B0%20Air") != -1) {
+if (ua.indexOf("%E7%AC%94%E8%AE%B0%20Air") != -1) {//笔记 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E8%84%9A%E6%AD%A5%20Air") != -1) {
+if (ua.indexOf("%E8%84%9A%E6%AD%A5%20Air") != -1) {//脚步 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E6%8B%BC%E8%B4%B4%E7%94%BB%20Air") != -1) {
+if (ua.indexOf("%E6%8B%BC%E8%B4%B4%E7%94%BB%20Air") != -1) {//拼贴画 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E9%A5%A5%E9%A5%BFAir") != -1) {
+if (ua.indexOf("%E9%A5%A5%E9%A5%BFAir") != -1) {//饥饿Air
   Body = chxm1009;
 }
 if (ua.indexOf("iOS-BeLingual") != -1) {
@@ -1744,7 +1745,7 @@ if (ua.indexOf("iOS-BeLingual") != -1) {
 if (ua.indexOf("Widgetbot") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E5%A4%A9%E6%B0%94%20Air") != -1) {
+if (ua.indexOf("%E5%A4%A9%E6%B0%94%20Air") != -1) {//天气 Air
   Body = chxm1009;
 }
 if (ua.indexOf("OweMe") != -1) {
@@ -1762,16 +1763,16 @@ if (ua.indexOf("Fonts%20Air") != -1) {
 if (ua.indexOf("Speech%20Air") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E4%B9%A0%E6%83%AF%20Air") != -1) {
+if (ua.indexOf("%E4%B9%A0%E6%83%AF%20Air") != -1) {//习惯 Air
   Body = chxm1009;
 }
 if (ua.indexOf("Quotes%20Air") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E5%BE%AA%E7%92%B0%20Air") != -1) {
+if (ua.indexOf("%E5%BE%AA%E7%92%B0%20Air") != -1) {//循環 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E4%BB%BB%E5%8A%A1%20Air") != -1) {
+if (ua.indexOf("%E4%BB%BB%E5%8A%A1%20Air") != -1) {//任务 Air
   Body = chxm1009;
 }
 if (ua.indexOf("PDF%20Air") != -1) {
@@ -1780,25 +1781,25 @@ if (ua.indexOf("PDF%20Air") != -1) {
 if (ua.indexOf("Story%20Air") != -1) {
   Body = chxm1009;
 }
-if (ua.indexOf("%E6%9C%9F%E5%88%8A%20Air") != -1) {
+if (ua.indexOf("%E6%9C%9F%E5%88%8A%20Air") != -1) {//期刊 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E7%94%A8%E5%BA%A6%20Air") != -1) {
+if (ua.indexOf("%E7%94%A8%E5%BA%A6%20Air") != -1) {//用度 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E6%A4%8D%E7%89%A9%20Air") != -1) {
+if (ua.indexOf("%E6%A4%8D%E7%89%A9%20Air") != -1) {//植物 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E5%AF%86%E7%A0%81%20Air") != -1) {
+if (ua.indexOf("%E5%AF%86%E7%A0%81%20Air") != -1) {//密码 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E5%AD%97%E5%85%B8%E7%A9%BA%E6%B0%A3") != -1) {
+if (ua.indexOf("%E5%AD%97%E5%85%B8%E7%A9%BA%E6%B0%A3") != -1) {//字典空氣
   Body = chxm1009;
 }
-if (ua.indexOf("%E4%BC%A0%E7%9C%9F%20Air") != -1) {
+if (ua.indexOf("%E4%BC%A0%E7%9C%9F%20Air") != -1) {//传真 Air
   Body = chxm1009;
 }
-if (ua.indexOf("%E8%AE%BE%E8%AE%A1%20Air") != -1) {
+if (ua.indexOf("%E8%AE%BE%E8%AE%A1%20Air") != -1) {//设计 Air
   Body = chxm1009;
 }
 const chxm1008 = {
@@ -1910,7 +1911,7 @@ const chxm1007 = {
   "environment": "Production",
   "status": 0
 };
-if (ua.indexOf("Picsew") != -1) {
+if (ua.indexOf("Picsew") != -1) {//Picsew(长图)
   Body = chxm1007;
 }
 const chxm1006 = {
