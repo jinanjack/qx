@@ -1,18 +1,33 @@
 /*
+ 大师兄&555
+
+
 # 555
 # https://app-v1.ecoliving168.com/api/v1/advert/config?pack=  开屏广告
 # https://a.weilai555.com:1000/api/v1/app/config? url reject
 # https://app-v1.ecoliving168.com/api/v1/movie/index_recommend?pack=
-# ^https?:\/\/[\w+\.\-\:]+\/api\/v\d\/movie\/index_recommend url script-response-body http://192.168.2.170:8080/555.js
+# ^https?:\/\/[\w+\.\-\:]+\/api\/v\d\/movie\/index_recommend url script-response-body http://192.168.2.170:8080/dsx555.js
 
 ====================================
 [rewrite_local]
+# 555_
 ^https?:\/\/[\w+\.\-\:]+\/api\/v\d\/app\/config\? url reject
+# 555_开屏
 ^https?:\/\/[\w+\.\-\:]+\/api\/v\d\/advert\/config\?pack= url reject
-^https?:\/\/[\w+\.\-\:]+\/api\/v\d\/movie\/index_recommend url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/555.js
+#555_首页轮播图 首页信息流 我的页面推广
+^https?:\/\/[\w+\.\-\:]+\/api\/v\d\/movie\/index_recommend url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/dsx555.js
+
+
+# 大师兄_去更新弹窗_加密文本
+^http:\/\/sdk\.alibaba\.com\.ailbaba\.me\/dsx\.php\/v6\/version url reject
+# 大师兄_排行榜页面_加密文本 影响投屏
+#^http:\/\/sdk\.alibaba\.com\.ailbaba\.me\/dsx\.php\/v6\/app_config url reject
+# 大师兄_去通告_Json对象
+^http:\/\/sdk\.alibaba\.com\.ailbaba\.me\/dsx\.php\/v6\/top_notice url reject-dict
+
 
 [mitm]
-hostname = run.api.qyfxgd.cn , *.weilai555.com , *.ecoliving168.com
+hostname = run.api.qyfxgd.cn , *.weilai555.com , *.ecoliving168.com , sdk.alibaba.com.ailbaba.me
 ====================================
  */
 
