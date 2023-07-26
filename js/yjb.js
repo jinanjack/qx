@@ -1,28 +1,13 @@
 /*
 
-# 用户信息
-/account
-
-# VIP
-/vip_info
-
-# 加cang榜单
-/fund_buy_ranking
-
-# 减cang
-/fund_sell_ranking
-
-# 持有
-/fund_hold_ranking
-
-# 飙升榜
-/fund_holdup_ranking
-
-# 切换源
-/fund_gz_source
-
-# 会员页下部
-/vip_information?page=1
+# userinfo=/account
+# VIP=/vip_info
+# 加cang榜单=/fund_buy_ranking
+# 减cang=/fund_sell_ranking
+# 持Y=/fund_hold_ranking
+# 飙S榜=/fund_holdup_ranking
+# 切换源=/fund_gz_source
+# 会员页下部=/vip_information?page=1
 
 ====================================
 [rewrite_local]

@@ -1,10 +1,13 @@
 /*
+# enpass
 
+====================================
 [rewrite_local]
 ^https?:\/\/license\.enpass\.io\/api\/v1\/subscription\/me  url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/enpass.js
 
 [mitm]
 hostname = license.enpass.io
+====================================
 */
 
 var obj = JSON.parse($response.body);
