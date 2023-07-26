@@ -1,9 +1,8 @@
 /*
 七猫小说
+# ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body http://192.168.2.170:8080/qimao.js
 ====================================
 [rewrite_local]
-# ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body http://192.168.2.170:8080/qimao.js
-
 ^https?:\/\/(api-\w+|xiaoshuo)\.wtzw\.com\/api\/v\d\/ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/qimao.js
 ^https:\/\/api-gw\.wtzw\.com\/welf\/app\/v1\/task\/red-packet$ url reject-dict
 
@@ -25,7 +24,7 @@ if (url.includes('/user/my-center')) {
     body = body.replace(/\"year_vip_show\"\:\"\d\"/g, '"year_vip_show":"1"').replace(/\"vip_show_type\"\:\"\d+\"/g, '"vip_show_type":"40"').replace(/\"is_vip\"\:\"\d\"/g, '"is_vip":"1"');
     let obj = JSON.parse(body);
     delete obj.data.user_area.vip_info;
-    obj.data.func_area.length > 0 && (obj.data.func_area = obj.data.func_area.filter(item => item.type == "core_func" || item.type == "other"));
+    obj.data.func_area.length > 0 && (obj.data.func_area = obj.data.func_area.filter(item => item.type == "core_func" || item.type == "other"));//只留obj.data.func_area[0]core_func 和 .other
     body = JSON.stringify(obj);
 }
 
