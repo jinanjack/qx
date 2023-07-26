@@ -42,30 +42,32 @@ hostname = *.yangjibao.com
 var body = $response.body;
 var url = $request.url;
 
-if (url.indexOf('/account') != -1 || url.indexOf('/vip_info') != -1) {
-	let obj = JSON.parse(body);
-	//obj.data.subscribe_status = 1;
-	obj.data.vip_label = true;
-	obj.data.is_pay = true;
-	obj.data.vip_expiry_date = '2088-08-08';
-	body = JSON.stringify(obj);
+if (url.includes('/account') || url.includes('/vip_info')) {
+    let obj = JSON.parse(body);
+    //obj.data.subscribe_status = 1;
+    obj.data.vip_label = true;
+    obj.data.is_pay = true;
+    obj.data.vip_expiry_date = '2088-08-08';
+    body = JSON.stringify(obj);
 }
 
-if (url.indexOf('_ranking') != -1) {
-	let obj = JSON.parse(body);
-	obj.data.vip_label = true;
-	body = JSON.stringify(obj);
+if (url.includes('_ranking')) {
+    let obj = JSON.parse(body);
+    obj.data.vip_label = true;
+    body = JSON.stringify(obj);
 }
 
 //会员页下部信息 [vip_info 包含 vip_information] 用reject类型APP会报网络出错
-if (url.indexOf('/vip_information') != -1) {
-	let obj = JSON.parse(body);
-	obj.data.list = [];
-	body = JSON.stringify(obj);
+if (url.includes('/vip_information')) {
+    let obj = JSON.parse(body);
+    obj.data.list = [];
+    body = JSON.stringify(obj);
 }
 //不可用
-if (url.indexOf('/fund_gz_source') != -1) {
-	body = '{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}}';
+if (url.includes('/fund_gz_source')) {
+    body = '{"code":200,"message":"SUCCESS","timestamp":1660536270,"data":{"source":1,"list":[1,2,3]}}';
 }
 
-$done({body});
+$done({
+    body
+});
