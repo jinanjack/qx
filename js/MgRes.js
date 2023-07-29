@@ -11,8 +11,8 @@
 
 ====================================
 [rewrite_local]
-# ^http[s]?:\/\/mobile\.api\.mgtv\.com\/v[0-9]\/(playlist|video\/album|video\/relative|video\/list).*$ url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/js/MgHeader.js
-# ^https?:\/\/.*mgtv\.com\/(v\d+\/(video\/getSource|module\/list)|GetUserInfo) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/MgRes.js
+^http[s]?:\/\/mobile\.api\.mgtv\.com\/v[0-9]\/(playlist|video\/album|video\/relative|video\/list).*$ url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/js/MgHeader.js
+^https?:\/\/.*mgtv\.com\/(v\d+\/(video\/getSource|module\/list)|GetUserInfo) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/MgRes.js
 &src\=mgtv&suuid\=.*&testversion\=&ticket\=[A-Z0-9]{32} url 302 &src=mgtv&testversion=&ticket=84122092810F360BA056B85869F9F51A
 ^https?:\/\/nuc\.api\.mgtv.com\/Logout url reject-dict
 ^https?:\/\/pcvideoyd\.titan\.mgtv\.com\/pb\/ url reject-dict
