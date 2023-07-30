@@ -1,11 +1,15 @@
 /* 
 # > 芒果vip
 
+# https://mobile.api.mgtv.com/v7/playlist/list
+# https://mobile.api.mgtv.com/v1/video/album
+# https://mobile.api.mgtv.com/v8/video/relative
+# https://mobile.api.mgtv.com/v9/video/list
+# ^http[s]?:\/\/mobile\.api\.mgtv\.com\/v[0-9]\/(playlist|video\/album|video\/relative|video\/list).*$ url script-request-header http://192.168.2.170:8080/MgHeader.js
+
 # https://mobile.api.mgtv.com/v8/video/getSource
 # VIP https://nuc.api.mgtv.com/GetUserInfo
 # 我的 https://me.bz.mgtv.com/v3/module/list
-
-# ^http[s]?:\/\/mobile\.api\.mgtv\.com\/v[0-9]\/(playlist|video\/album|video\/relative|video\/list).*$ url script-request-header http://192.168.2.170:8080/MgHeader.js
 # ^https?:\/\/.*mgtv\.com\/(v\d+\/(video\/getSource|module\/list)|GetUserInfo) url script-response-body http://192.168.2.170:8080/MgRes.js
 
 

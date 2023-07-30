@@ -1,5 +1,5 @@
 var headers = $request.headers;
-headers.Cookie = "";
-headers["x-r-i"] = "";
-headers["x-l-r-i"] = "";
-$done({"headers": headers});
+delete headers['Cookie'];
+delete headers['x-r-i'];
+delete headers['x-l-r-i'];
+$done({headers});
