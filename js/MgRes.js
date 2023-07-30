@@ -54,11 +54,11 @@ var obj = JSON.parse(body);
 //VIP https://nuc.api.mgtv.com/GetUserInfo
 if (url.includes('/GetUserInfo')) {
     //obj.data.nickname = "";
+	obj.data.isVip = 1;
     obj.data.vipExpiretime = 324938345490000;
     obj.data.vipinfo.isvip = 1;
     obj.data.vipinfo.vip_end_time = "2088-08-08 00:00:00";
     obj.data.vipinfo.type = "2";
-    obj.data.isVip = 1;
     obj.data.vipinfo.growth.level = 9;
     body = JSON.stringify(obj);
 }
@@ -70,13 +70,5 @@ if (url.includes('/module/list')) {
     obj.data.list = obj.data.list.filter(item => item.id == 1 || item.id == 2 || item.id == 4 || item.id == 5 || item.id == 7);
     body = JSON.stringify(obj);
 }
-
-//https://dc.bz.mgtv.com/dynamic/v1/channel/index/
-/* if (url.includes('/dynamic/v1/channel/index/')) {
-    obj.data[0].DSLList[0].data.vip_end_time_desc = '2088-08-08';
-    obj.data[0].DSLList[0].data.vip_id = '5';
-	delete obj.data[0].DSLList[0].vip_end_time_desc;
-    body = JSON.stringify(obj);
-} */
 
 $done({body});

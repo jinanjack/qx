@@ -1,5 +1,5 @@
-var headers = $request.headers;
-delete headers['Cookie'];
-delete headers['x-r-i'];
-delete headers['x-l-r-i'];
-$done({headers});
+var h = $request.headers;
+delete h['Cookie'];
+delete h['x-r-i'];
+delete h['x-l-r-i'];
+$done({h});
