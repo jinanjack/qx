@@ -5,7 +5,7 @@
 # 加密来源 @PayNe
 ====================================
 [rewrite_local]
-^https?:\/\/api\.x-storm\.com\/app/user-profile\/$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/storm.js
+^https?:\/\/api\.x-storm\.com\/app\/user-profile\/$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/storm.js
 
 [mitm]
 hostname = *.x-storm.com
