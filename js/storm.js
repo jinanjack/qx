@@ -19,7 +19,7 @@ let headers = $request.headers;
 if (url == 'https://api.x-storm.com/app/user-profile/') {
 	var uid = headers["uid"];
 	var time = headers["t"];
-    var str = '{"uid": "' + uid + '", "userID": 10086, "isVip": 1, "member_type": 2, "member_title": "\u811A\u672C\u6765\u6E90@NobyDa_Chat", "expire_on": "\u6280\u672F\u652F\u6301@PayNe", "auth_quantity": 999999999, "auth_mail": null, "is_primary": 0, "trail_status": 0, "function_list": [1, 2, 3, 4, 5], "can_deauthorize": true, "timestamp": ' + time + ', "ts": 1}';
+    var str = '{"uid": "' + uid + '", "userID": 10086, "isVip": 1, "member_type": 2, "member_title": "\u811A\u672C\u6765\u6E90@NobyDa_Chat", "expire_on": "\u6280\u672F\u652F\u6301@PayNe", "auth_quantity": 999999999, "auth_mail": "PayNe@nb.com", "is_primary": 0, "trail_status": 0, "function_list": [1, 2, 3, 4, 5], "can_deauthorize": true, "timestamp": ' + time + ', "ts": 1}';
     var key = '29hgfhdfv78344' + uid;
     var data = l.btoa(l.encrypt(str, key));
     var body = '{"code":200,"data":"' + data + '","msg":"success","status":"success"}';
