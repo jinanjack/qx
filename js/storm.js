@@ -1,11 +1,8 @@
 /*
- QX本地解锁StormSniffer
+ 本地解锁StormSniffer
 
 # 脚本制作 @@NobyDa_Chat
-# 加密来源 @PayNe   https://t.me/mumushare6/1226
-
-
-# ^http[s]?:\/\/api\.x-storm\.com(:\d{2,5})?\/app/user-profile\/$ url script-response-body http://192.168.2.170:8080/ss.js
+# 加密来源 @PayNe
 ====================================
 [rewrite_local]
 ^http[s]?:\/\/api\.x-storm\.com(:\d{2,5})?\/app/user-profile\/$ url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/storm.js
