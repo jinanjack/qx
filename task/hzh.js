@@ -1,6 +1,6 @@
 /*
-华住会 APP签到
-
+华住会 APP获取Token&签到
+仅QX测试，其他自测
 ======调试区|忽略======
 # ^https?:\/\/hweb-personalcenter\.huazhu\.com\/login\/autoLogin$ url script-request-header http://192.168.2.170:8080/hzh.js
 ======调试区|忽略======
