@@ -91,7 +91,7 @@ function signin() {
                 } else if (result?.code == '006') {
                     message += `签到:${result.errorMsg}\n`;
                 } else {
-                    message+=`❌签到失败,原因未知!\n`
+                    message+=`❌签到失败:${result.errorMsg}!\n`
                 }
             } catch (e) {
                 $.logErr(e,"❌请重新登陆更新Token");
@@ -121,7 +121,7 @@ function status() {
             if (result?.code == '00000') {
                 message+=`当前积分:${result?.data.pointTotal}`
             } else {
-                $.msg($.name, "", "❌请重新登陆更新Token");
+                $.msg($.name, "", "❌${result.errorMsg}");
             }
             resolve();
         });
