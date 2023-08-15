@@ -7,14 +7,15 @@
 由于不懂JS，代码是硬堆的，也不知道怎么弄，好在能跑起来，有懂的大佬可以帮优化下流程
 
 ======调试区|忽略======
-# ^https:\/\/m5(|-zb)\.amap\.com\/ws\/yuece\/act\/query\? url script-response-body http://192.168.2.170:8080/ampDache.js
-# https://m5-zb.amap.com/ws/yuece/act/query?  # https://m5.amap.com/ws/yuece/openapi/activity/current/query
-#    https://m5.amap.com/ws/yuece/act/query?
+# ^https:\/\/m5(-zb)?\.amap\.com\/ws\/yuece\/(act|openapi)\/(activity\/current\/)?query url script-response-body http://192.168.2.170:8080/ampDache.js
+# https://m5-zb.amap.com/ws/yuece/act/query?  
+# https://m5.amap.com/ws/yuece/act/query?
+# https://m5.amap.com/ws/yuece/openapi/activity/current/query
 ======调试区|忽略======
 
 ====================================
 [rewrite_local]
-^https:\/\/m5(|-zb)\.amap\.com\/ws\/yuece\/act\/query\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js
+^https:\/\/m5(-zb)?\.amap\.com\/ws\/yuece\/(act|openapi)\/(activity\/current\/)?query url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js
 
 [task_local]
 1 0 * * * https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, tag=高德地图打车签到, enabled=true
