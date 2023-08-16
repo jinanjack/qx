@@ -1,21 +1,22 @@
 /*
 高德打车签到
 仅QX测试，其他自测
-获取Cookie等信息方法 ，QX开重写，进入【高德地图，打车，福利中心】,如果没提醒，重新打开APP重新进入
+获取Cookie方法 ，QX开重写，进入【高德地图/微信/支付宝 小程序[高德打车]，打车，福利中心】，任意一端获取成功即可3端签到
 
 自动签到 地图APP/微信小程序、支付宝小程序
 由于不懂JS，代码是硬堆的，也不知道怎么弄，好在能跑起来，有懂的大佬可以帮优化下流程
 
 ======调试区|忽略======
-# ^https:\/\/m5(-zb)?\.amap\.com\/ws\/yuece\/(act|openapi)\/(activity\/current\/)?query url script-response-body http://192.168.2.170:8080/ampDache.js
-# https://m5-zb.amap.com/ws/yuece/act/query?  
-# https://m5.amap.com/ws/yuece/act/query?
-# https://m5.amap.com/ws/yuece/openapi/activity/current/query
+# ^https:\/\/(m5(|-zb)|dache)\.amap\.com\/(ws\/yuece\/(act|openapi\/activity\/current)\/query|common\/(alipaymini|wxmini)\?_ENCRYPT=) url script-response-body http://192.168.2.170:8080/ampDache.js
+# APP/A/V    https://m5.amap.com/ws/yuece/openapi/activity/current/query
+# APP        https://m5-zb.amap.com/ws/yuece/act/query
+#支付宝      https://dache.amap.com/common/alipaymini?_ENCRYPT=
+# 微信       https://dache.amap.com/common/wxmini?_ENCRYPT=
 ======调试区|忽略======
 
 ====================================
 [rewrite_local]
-^https:\/\/m5(-zb)?\.amap\.com\/ws\/yuece\/(act|openapi)\/(activity\/current\/)?query url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js
+^https:\/\/(m5(|-zb)|dache)\.amap\.com\/(ws\/yuece\/(act|openapi\/activity\/current)\/query|common\/(alipaymini|wxmini)\?_ENCRYPT=) url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js
 
 [task_local]
 1 0 * * * https://raw.githubusercontent.com/wf021325/qx/master/task/ampDache.js, tag=高德地图打车签到, enabled=true
@@ -34,11 +35,17 @@ var RSA={};!function(exports){var window={},navigator={},dbits;Array.prototype.f
 //************抠的算法
 function s(e,t){var n,r=4-e.length%4;n=t?0==(3&e.length)?e.length>>>2:1+(e.length>>>2):e.length/4+1;for(var o=new Uint32Array(Math.floor(n)),i=(r<<24)+(r<<16)+(r<<8)+r,a=0;a<n;++a)o[a]=i;for(n=e.length,a=0;a<n;++a)o[a>>>2]&=~(255<<((3&a)<<3)),o[a>>>2]|=(255&e[a])<<((3&a)<<3);return o}function u(e,t,n,r,o,i){return(n>>>5^t<<2)+(t>>>3^n<<4)^(e^t)+(i[3&r^o]^n)}function l(e){if(e.length<16){var t=new Uint8Array(16);t.set(e),e=t}return e}function a(e,t){var n=e.length,r=n<<2;if(t){var o=e[n-1];if(o<(r-=4)-3||o>r)return null;r=o}for(var i=new Uint8Array(Math.floor(r)),a=0;a<r;++a)i[a]=e[a>>2]>>((3&a)<<3);return i}function c(e){for(var t=e.length,n=new Uint8Array(Math.floor(3*t+1)),r=0,o=0;o<t;o++){var i=e.charCodeAt(o);if(i<128)n[r++]=i;else if(i<2048)n[r++]=192|i>>6,n[r++]=128|63&i;else{if(!(i<55296||i>57343)){if(o+1<t){var a=e.charCodeAt(o+1);if(i<56320&&56320<=a&&a<=57343){var s=65536+((1023&i)<<10|1023&a);n[r++]=240|s>>18,n[r++]=128|s>>12&63,n[r++]=128|s>>6&63,n[r++]=128|63&s,o++;continue}}throw new Error("Malformed string")}n[r++]=224|i>>12,n[r++]=128|i>>6&63,n[r++]=128|63&i}}return n.subarray(0,r+1)}function d(e,t){return"string"==typeof e&&(e=new Buffer(e,"base64")),"string"==typeof t&&(t=c(t)),null==e||0===e.length?e:a(function(e,t){var n,r,o,i,a,s=e.length,l=s-1;for(n=e[0],o=2654435769*Math.floor(6+52/s);0!==o;o-=2654435769){for(i=o>>>2&3,a=l;a>0;--a)r=e[a-1],n=e[a]-=u(o,n,r,a,i,t);r=e[l],n=e[0]-=u(o,n,r,a,i,t)}return e}(s(e,!0),s(l(t),!0)),!1)}function f(e,t){return"string"==typeof e&&(e=c(e)),"string"==typeof t&&(t=c(t)),null==e||0===e.length?e:a(function(e,t){var n,r,o,i,a,s,l=e.length,c=l-1;for(r=e[c],o=0,s=0|Math.floor(6+52/l);s>0;--s){for(i=(o+=2654435769)>>>2&3,a=0;a<c;++a)n=e[a+1],r=e[a]+=u(o,n,r,a,i,t);n=e[0],r=e[c]+=u(o,n,r,a,i,t)}return e}(s(e,!1),s(l(t),!1)),!1)}var base64EncodeChars="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";var base64DecodeChars=new Array(-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,62,-1,-1,-1,63,52,53,54,55,56,57,58,59,60,61,-1,-1,-1,-1,-1,-1,-1,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,-1,-1,-1,-1,-1,-1,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,-1,-1,-1,-1,-1);function base64encode(str){var out,i,len;var c1,c2,c3;len=str.length;i=0;out="";while(i<len){c1=str.charCodeAt(i++)&0xff;if(i==len){out+=base64EncodeChars.charAt(c1>>2);out+=base64EncodeChars.charAt((c1&0x3)<<4);out+="==";break;}c2=str.charCodeAt(i++);if(i==len){out+=base64EncodeChars.charAt(c1>>2);out+=base64EncodeChars.charAt(((c1&0x3)<<4)|((c2&0xF0)>>4));out+=base64EncodeChars.charAt((c2&0xF)<<2);out+="=";break;}c3=str.charCodeAt(i++);out+=base64EncodeChars.charAt(c1>>2);out+=base64EncodeChars.charAt(((c1&0x3)<<4)|((c2&0xF0)>>4));out+=base64EncodeChars.charAt(((c2&0xF)<<2)|((c3&0xC0)>>6));out+=base64EncodeChars.charAt(c3&0x3F);}return out;}function base64decode(str){var c1,c2,c3,c4;var i,len,out;len=str.length;i=0;out="";while(i<len){do{c1=base64DecodeChars[str.charCodeAt(i++)&0xff];}while(i<len&&c1==-1);if(c1==-1)break;do{c2=base64DecodeChars[str.charCodeAt(i++)&0xff];}while(i<len&&c2==-1);if(c2==-1)break;out+=String.fromCharCode((c1<<2)|((c2&0x30)>>4));do{c3=str.charCodeAt(i++)&0xff;if(c3==61)return out;c3=base64DecodeChars[c3];}while(i<len&&c3==-1);if(c3==-1)break;out+=String.fromCharCode(((c2&0XF)<<4)|((c3&0x3C)>>2));do{c4=str.charCodeAt(i++)&0xff;if(c4==61)return out;c4=base64DecodeChars[c4];}while(i<len&&c4==-1);if(c4==-1)break;out+=String.fromCharCode(((c3&0x03)<<6)|c4);}return out;}
 //************抠的算法
-function Json2Form() {
+function Json2Form() {//JSON转为&a=b拼接的提交内容 键按A~Z排序
     var t = arguments.length > 0 && void 0 !== arguments[0] ? arguments[0] : {};
     return Object.keys(t).sort().map((function (e) {
         return "".concat(e, "=").concat(t[e])
     })).join("&")
+}
+function Form2Json(str) {//&a=b拼接转JSON,不排序
+    var obj = {}
+    str.split('&').forEach(item => obj[item.split('=')[0]] = (item.split('=')[1]))
+    var strobj = JSON.stringify(obj)
+    return obj
 }
 function Encrypt_Body(t, e) {
     return function(t) {
@@ -56,12 +63,11 @@ function RSA_Public_Encrypt(t) {
 
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 const $ = new Env("高德地图签到");
 const _key = 'GD_Val';
-const gdVal = $.getdata(_key);
-var message = '', node='', channel, adiu='', userId='', actID='', playID='',Cookie='',sessionid='', adcode='', bizVersion='';
-//console.log(gdVal)
+const gdVal = $.getdata(_key) || ($.isNode() ? process.env.GD_Val : '');
+//$.log(gdVal)
+var message = '', node='', channel, adiu='', userId='', actID='', playID='',ACookie='',sessionid='';
 !(async() => {
     if (typeof $request != "undefined") {
         getToken();
@@ -70,11 +76,18 @@ var message = '', node='', channel, adiu='', userId='', actID='', playID='',Cook
     if (gdVal) {
         let obj = JSON.parse(gdVal);
         userId = obj.userId;
-        Cookie = obj.Cookie;
-		sessionid = obj.sessionid;
+		obj.Cookie != '' && (ACookie = obj.Cookie)
+		obj.cookie != "" && (ACookie = obj.cookie)
+        sessionid = obj.sessionid;
         adiu = obj.adiu;
-        adcode = obj.adcode;
-        bizVersion = obj.bizVersion
+        bizVersion = obj.bizVersion;
+        if (sessionid.length < 30) {
+            $.msg($.name, '', '❌请先获取Cookie🎉');
+            return;
+        }
+    } else {
+        $.msg($.name, '', '❌请先获取Cookie🎉');
+        return;
     }
     message += `----------微信小程序签到----------\n`;
     node = 'wechatMP',
@@ -91,6 +104,7 @@ var message = '', node='', channel, adiu='', userId='', actID='', playID='',Cook
     playID = '4yQcyzXdkYU';
     await checkIn();
     await signIn();
+	
     message += `----------支付宝小程序签到----------\n`;
     node = 'alipayMini',
     channel = 'alipay_mini',
@@ -109,19 +123,38 @@ var message = '', node='', channel, adiu='', userId='', actID='', playID='',Cook
 });
 
 function getToken() {
-    if ($request && $request.method != 'OPTIONS') {
+    if ($request && $request.method != 'OPTIONS' && /\/common\/(alipaymini|wxmini)\?_ENCRYPT=/.test($request.url)) { //WX、ALI
+        let ENCRYPT = $request.url.split("_ENCRYPT=")[1].split("&")[0];
+        ENCRYPT = base64decode(ENCRYPT);
+        let obj = {}, abc = {};
+        ENCRYPT.split('&').forEach(item => obj[item.split('=')[0]] = (item.split('=')[1]))
+        abc.userId = obj.userId;
+        abc.adiu = obj.deviceId;
+        abc.sessionid = obj.sessionId;
+        if (abc.sessionid.length > 30) {
+            $.setdata(JSON.stringify(abc), _key);
+            $.msg($.name, '从小程序获取签到sessionid成功🎉', $.toStr(abc));
+        }
+    } else if ($request && $request.method != 'OPTIONS') { //WX、ALI、APP
         let abc = {};
-        let obj = JSON.parse($response.body)
-        abc.userId = obj.content.uid
-        abc.adiu = obj.content.adiu
-        abc.adcode = obj.content.adcode
-        abc.bizVersion = obj.content.bizVersion
-		abc.Cookie = $request.headers['Cookie']
-		abc.sessionid = $request.headers['sessionid']
-		if(abc.sessionid.length > 28 || abc.Cookie.indexOf('sessionid')!=-1){
-			let str = $.setdata(JSON.stringify(abc), _key)
-			$.msg($.name, '', '获取签到Cookie成功🎉')
-		}
+        let obj = JSON.parse($response.body);
+        abc.userId = obj.content.uid;
+        abc.adiu = obj.content.adiu;
+        let hed = $request.headers;
+        abc.sessionid = hed['sessionid'];
+        if (abc.sessionid.length > 30) {
+            $.setdata(JSON.stringify(abc), _key);
+			$.msg($.name, '获取签到sessionid成功🎉', $.toStr(abc));
+        } else if (hed.hasOwnProperty('Cookie') && hed['Cookie'].includes('sessionid=')) {
+            abc.sessionid = hed['Cookie'].split("sessionid=")[1].split(";")[0];
+            $.setdata(JSON.stringify(abc), _key);
+			$.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
+			
+        } else if (hed.hasOwnProperty('cookie') && hed['cookie'].includes('sessionid=')) {
+            abc.sessionid = hed['cookie'].split("sessionid=")[1].split(";")[0];
+            $.setdata(JSON.stringify(abc), _key);
+			$.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
+        }
     }
 }
 
@@ -154,12 +187,12 @@ function getQuery(adiu,channel, key, sign) {
 function getBody(body,key) {
     return Encrypt_Body(Json2Form(body), key)
 }
-function getHeaders(Cookie,sessionid) {
+function getHeaders(Cookie, sessionid) {
     return {
         'Content-Type': 'application/x-www-form-urlencoded',
         'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_6_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 amap/12.13.1.2034 AliApp(amap/12.13.1.2034) NetType/WiFi',
         'Cookie': Cookie,
-		'sessionid': sessionid
+        'sessionid': sessionid
     }
 }
 
@@ -172,7 +205,7 @@ function getSigUrl(query){
 
 function getShowBody(node, channel,adiu, userId, sign, actID, playIDs) {
     return {
-        "bizVersion": bizVersion,
+        "bizVersion": "060305",
         "h5version": "6.35.14",
         "platform": "ios",
         "tid": adiu,
@@ -197,7 +230,7 @@ function getShowBody(node, channel,adiu, userId, sign, actID, playIDs) {
 }
 function getSigBody(node, channel, adiu, userId, sign, actID, playID, signTerm, signDay) {
      return{
-        "bizVersion": bizVersion,
+        "bizVersion": "060305",
         "h5version": "6.35.14",
         "platform": "ios",
         "tid": adiu,
@@ -224,8 +257,6 @@ function getSigBody(node, channel, adiu, userId, sign, actID, playID, signTerm, 
     }
 }
 
-
-
 function checkIn() {
     return new Promise((resove) => {
         key = getKey();
@@ -235,7 +266,7 @@ function checkIn() {
 		body = getShowBody(node, channel, adiu, userId, sign, actID, playID);
         body = getBody(body,key);
         body = 'in=' + encodeURIComponent(body);
-        headers = getHeaders(Cookie,sessionid);
+        headers = getHeaders(ACookie,sessionid);
         const rest = {url: url,body: body,headers: headers};
         $.post(rest, (err, resp, data) => {
             try {
@@ -243,8 +274,8 @@ function checkIn() {
 				if(obj?.code == '1'){
 					obj.data.playMap.dailySign.signList.forEach(t => {
 						if(t.date == $.time('MM月dd日')){
-							signTerm11 = obj.data.playMap.dailySign.signTerm;
-							signDay11 = t.day;
+							signTerm = obj.data.playMap.dailySign.signTerm;
+							signDay = t.day;
 							isSign = t.isSign;//isSign = 1 为签到过，懒得管了，让它再提交一次吧
 						message += `查询:${t.date} isSign=${isSign}\n`;	
 						}
@@ -266,10 +297,10 @@ function signIn() {
         sign = getSign(channel);
         query = getQuery(adiu,channel, key, sign);
 		url = getSigUrl(query)
-		body = getSigBody(node, channel, adiu, userId, sign, actID, playID, signTerm11, signDay11); 
+		body = getSigBody(node, channel, adiu, userId, sign, actID, playID, signTerm, signDay); 
         body = getBody(body,key);
         body = 'in=' + encodeURIComponent(body);
-        headers = getHeaders(Cookie,sessionid);
+        headers = getHeaders(ACookie,sessionid);
         const rest = {url: url,body: body,headers: headers};
         $.post(rest, (err, resp, data) => {
             try {
