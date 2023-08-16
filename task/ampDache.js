@@ -76,8 +76,8 @@ var message = '', node='', channel, adiu='', userId='', actID='', playID='',ACoo
     if (gdVal) {
         let obj = JSON.parse(gdVal);
         userId = obj.userId;
-		obj.Cookie != '' && (ACookie = obj.Cookie)
-		obj.cookie != "" && (ACookie = obj.cookie)
+		obj.Cookie != '' && (Cookie = obj.Cookie)
+		obj.cookie != "" && (Cookie = obj.cookie)
         sessionid = obj.sessionid;
         adiu = obj.adiu;
         bizVersion = obj.bizVersion;
@@ -266,7 +266,7 @@ function checkIn() {
 		body = getShowBody(node, channel, adiu, userId, sign, actID, playID);
         body = getBody(body,key);
         body = 'in=' + encodeURIComponent(body);
-        headers = getHeaders(ACookie,sessionid);
+        headers = getHeaders(Cookie,sessionid);
         const rest = {url: url,body: body,headers: headers};
         $.post(rest, (err, resp, data) => {
             try {
@@ -300,7 +300,7 @@ function signIn() {
 		body = getSigBody(node, channel, adiu, userId, sign, actID, playID, signTerm, signDay); 
         body = getBody(body,key);
         body = 'in=' + encodeURIComponent(body);
-        headers = getHeaders(ACookie,sessionid);
+        headers = getHeaders(Cookie,sessionid);
         const rest = {url: url,body: body,headers: headers};
         $.post(rest, (err, resp, data) => {
             try {
