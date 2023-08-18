@@ -147,13 +147,16 @@ function getToken() {
 			$.msg($.name, '获取签到sessionid成功🎉', $.toStr(abc));
         } else if (hed.hasOwnProperty('Cookie') && hed['Cookie'].includes('sessionid=')) {
             abc.sessionid = hed['Cookie'].split("sessionid=")[1].split(";")[0];
-            $.setdata(JSON.stringify(abc), _key);
-			$.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
-			
+			if (abc.sessionid.length > 30){
+				$.setdata(JSON.stringify(abc), _key);
+				$.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
+			}
         } else if (hed.hasOwnProperty('cookie') && hed['cookie'].includes('sessionid=')) {
             abc.sessionid = hed['cookie'].split("sessionid=")[1].split(";")[0];
-            $.setdata(JSON.stringify(abc), _key);
-			$.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
+			if (abc.sessionid.length > 30){
+				$.setdata(JSON.stringify(abc), _key);
+				$.msg($.name, '从Cookie中获取签到sessionid成功🎉', $.toStr(abc));
+			}
         }
     }
 }
