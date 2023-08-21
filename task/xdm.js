@@ -63,9 +63,36 @@ function getToken() {
     if ($request && $request.method != 'OPTIONS' && $request.headers.hasOwnProperty("token")) {
 		let a = $request.headers['token'];
         $.setdata(a, _key)
-            //$.msg($.name, '', '获取签到Token成功🎉\n'+a)
+        //$.msg($.name, '', '获取签到Token成功🎉\n'+a)
     }
 }
+
+function GetObj() {
+     return {
+        "token": Token,
+        "timestamp": new Date().getTime()
+    }
+}
+function GetSign(obj){
+	let a = JSON.stringify(obj) + 'dwsad3$#@$!!@#^%&$_'
+	return CryptoJS.MD5(a).toString()
+}
+function getBody(){
+	let obj = GetObj();
+	let sign = GetSign(obj);
+	obj.sign = sign;
+	let a = JSON.stringify(obj);
+	return a
+}
+function getHeaders() {
+    return {
+        'User-Agent': 'yeemiao/6.36.0 (iPhone; iOS 15.6.1; Scale/2.00);xdm/6.36.0;appBuild/202308162015;iOS/15.6.1',
+        'Content-Type': 'application/json;charset=utf-8',
+        'token': Token,
+    }
+}
+
+
 
 //https://dm.yeemiao.com/askDoctor/doctor/get-doctor-by-user
 //{"token":"e59d832e7e893ff95e12b165367141db0000000141689170","userId":41689170,"timestamp":1692028932532,"sign":"a55677e64583d1a8611f2fccfdbf223f"}
@@ -76,29 +103,27 @@ function checkToken() {
 		let sign = GetSign(obj);
 		obj.sign = sign;
 		body = JSON.stringify(obj);
+		headers = getHeaders();
         const rest = {
             url: "https://dm.yeemiao.com/askDoctor/doctor/get-doctor-by-user",
-            headers: {
-                'User-Agent': 'yeemiao/6.35.5 (iPhone; iOS 15.6.1; Scale/2.00);xdm/6.35.5;appBuild/202308071710;iOS/15.6.1',
-                'Content-Type': 'application/json;charset=UTF-8',
-            },
+            headers: headers,
             body: body
         };
         $.post(rest, (error, response, data) => {
             try {
-                var result = JSON.parse(data);
-                if (result?.code == '00000' || result?.code == '01000080000' ) {
+                var obj = JSON.parse(data);
+                if (obj?.code == '00000' || obj?.code == '01000080000' ) {
 					//{"code":"01000080000","errorMsg":"该医生已下线"}
 					isLogin = 1
                     message += `检查Token:成功\n`;
-                } else if(result?.code=='00200010006'){
+                } else if(obj?.code=='00200010006'){
 					isLogin = 2
-                    message += `检查Token失败:${result.errorMsg}\n`;
+                    message += `检查Token失败:${obj.errorMsg}\n`;
 					//{"code":"00200010006","name":"USER_TOKEN","errorMsg":"token已过有效期"}
 					
                 }else{
 					isLogin = 3
-					message += `检查Token失败:${result.errorMsg}\n`;
+					message += `检查Token失败:${obj.errorMsg}\n`;
 					//{"code":"00600010006","name":"USER_TOKEN","errorMsg":"无效的token"}
 				}
             } catch (e) {
@@ -114,23 +139,21 @@ function checkToken() {
 function updataToken() {
     return new Promise((resolve) => {
 		body = getBody();
+		headers = getHeaders();
         const rest = {
             url: "https://dm.yeemiao.com/user/updateLoginToken",
-            headers: {
-                'User-Agent': 'yeemiao/6.35.5 (iPhone; iOS 15.6.1; Scale/2.00);xdm/6.35.5;appBuild/202308071710;iOS/15.6.1',
-                'Content-Type': 'application/json;charset=UTF-8',
-            },
+            headers: headers,
             body: body
         };
         $.post(rest, (error, response, data) => {
             try {
-                var result = JSON.parse(data);
-                if (result?.code == '00000') {
-					Token = result.data.token
+                var obj = JSON.parse(data);
+                if (obj?.code == '00000') {
+					Token = obj.data.token
                     message += `更新Token:更新成功\n`;
 					$.setdata(Token, _key)
                 } else {
-                    message += `更新Token失败:${result.errorMsg}\n`;
+                    message += `更新Token失败:${obj.errorMsg}\n`;
                 }
             } catch (e) {
                 $.logErr(e,"❌更新Token请重新登陆更新Token");
@@ -143,47 +166,25 @@ function updataToken() {
 //{"code":"00000","data":{"token":"d0e44f511b5682a1f8b2b58e06f073f80000000141689170","registerStatus":0,"isSetPwd":0}}
 //{"code":"00600010003","name":"USER_LOGIN","errorMsg":"请使用验证码方式登录，如有问题请联系客服400-830-4188，谢谢！"}
 
-function GetObj() {
-     return {
-        "token": Token,
-        "timestamp": new Date().getTime()
-    }
-}
-function GetSign(obj){
-	let a = JSON.stringify(obj) + 'dwsad3$#@$!!@#^%&$_'
-	return CryptoJS.MD5(a).toString()
-}
-
-function getBody(){
-	let obj = GetObj();
-	let sign = GetSign(obj);
-	obj.sign = sign;
-	let a = JSON.stringify(obj);
-	return a
-}
-
 function signin() {
     return new Promise((resolve) => {
 		body = getBody();
-		console.log("body=="+body)
+		headers = getHeaders();
         const signinRequest = {
             url: "https://dm.yeemiao.com/point/signin/v2",
-            headers: {
-                'User-Agent': 'yeemiao/6.35.5 (iPhone; iOS 15.6.1; Scale/2.00);xdm/6.35.5;appBuild/202308071710;iOS/15.6.1',
-                'Content-Type': 'application/json;charset=UTF-8',
-            },
+            headers: headers,
             body: body
         };
         $.post(signinRequest, (error, response, data) => {
             try {
 
-                var result = JSON.parse(data);
-                if (result?.code == '00000') {
+                var obj = JSON.parse(data);
+                if (obj?.code == '00000') {
                     message += `签到:签到成功\n`;
-                } else if (result?.code == '006') {
-                    message += `签到:${result.errorMsg}\n`;
+                } else if (obj?.code == '006') {
+                    message += `签到:${obj.errorMsg}\n`;
                 } else {
-                    message+=`❌签到失败:${result.errorMsg}!\n`
+                    message+=`❌签到失败:${obj.errorMsg}!\n`
                 }
             } catch (e) {
                 $.logErr(e,"❌请重新登陆更新Token");
@@ -204,54 +205,22 @@ function signin() {
 //https://dm.yeemiao.com/point/rule/getRuleOtherConfig 阅读文章列表
 //https://dm.yeemiao.com/point/updatePointByRuleIdList 阅读文章提交
 //{"token":"fd55fd765febecab2719f632aef61a850000000141689170","ruleList":[{"extra":"{\"readDuration\":10,\"articleCategory\":\"002006\"}","ruleId":112}],"timestamp":1691897156873,"sign":"87a129b2d5bd51f4a373101b204c74b8"}
-function signin() {
-    return new Promise((resolve) => {
-		body = getBody();
-        const signinRequest = {
-            url: "https://dm.yeemiao.com/point/signin/v2",
-            headers: {
-                'User-Agent': 'yeemiao/6.35.5 (iPhone; iOS 15.6.1; Scale/2.00);xdm/6.35.5;appBuild/202308071710;iOS/15.6.1',
-                'Content-Type': 'application/json;charset=UTF-8',
-            },
-            body: body
-        };
-        $.post(signinRequest, (error, response, data) => {
-            try {
-
-                var result = JSON.parse(data);
-                if (result?.code == '00000') {
-                    message += `签到:签到成功\n`;
-                } else if (result?.code == '006') {
-                    message += `签到:${result.errorMsg}\n`;
-                } else {
-                    message+=`❌签到失败:${result.errorMsg}!\n`
-                }
-            } catch (e) {
-                $.logErr(e,"❌请重新登陆更新Token");
-            } finally {
-                resolve();
-            }
-        });
-    });
-}
 
 function status() {
     return new Promise((resolve) => {
 		body = getBody();
-        const statusRequest = {
+		headers = getHeaders();
+        const rest = {
             url: 'https://dm.yeemiao.com/point/getUserPointInfo',
-            headers: {
-				'Content-Type': 'application/json;charset=UTF-8',
-				'Content-Type': 'yeemiao/6.35.5 (iPhone; iOS 15.6.1; Scale/2.00);xdm/6.35.5;appBuild/202308071710;iOS/15.6.1',
-			},
+            headers: headers,
 			 body: body
         };
-        $.post(statusRequest, (error, response, data) => {
-            var result = JSON.parse(data);
-            if (result?.code == '00000') {
-                message+=`当前积分:${result?.data.pointTotal}`
+        $.post(rest, (error, response, data) => {
+            var obj = JSON.parse(data);
+            if (obj?.code == '00000') {
+                message+=`当前积分:${obj?.data.pointTotal}`
             } else {
-                $.msg($.name, "", "❌${result.errorMsg}");
+                $.msg($.name, "", "❌${obj.errorMsg}");
             }
             resolve();
         });
