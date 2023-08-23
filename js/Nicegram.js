@@ -16,5 +16,3 @@ const res = {
 	body : '{"data": {"premiumAccess": true}}'
 }
 $done(res);
-
-isQX ? "HTTP/1.1 200 OK" : 200
