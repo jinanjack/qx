@@ -34,7 +34,7 @@ $.WBZJ = $.getdata(_key) || ($.isNode() ? process.env.WBZJ_KEY : '');
 const notify = $.isNode() ? require('./sendNotify') : '';
 
 var message = "";
-var publicKey, key;
+var publicKey, key , sid, shareid = ["69517", "82748", "83256", "44181", "89574"];
 
 !(async() => {
     if (typeof $request != "undefined") {
@@ -44,6 +44,10 @@ var publicKey, key;
     if ($.WBZJ != undefined) {
 		$.WBZJ = JSON.parse($.WBZJ);
 		await checkIn();
+		await welcome();
+        for (sid of shareid) {
+            await share();
+        }
 		await signin();
 		console.log(message);//node,青龙日志
 		await SendMsg(message);
@@ -62,10 +66,10 @@ function getCookie() {
     if ($request && $request.method != 'OPTIONS') {
         let head = $request.headers, sess = {};
         sess.url = $request.url.split('/home/center/')[0];
-        head.hasOwnProperty('Cookie') ? sess.ck = head['Cookie'] : sess.ck = head['cookie'];
-        sess.ck = sess.ck.split(';')[1] + ';' + sess.ck.split(';')[2];
-        head.hasOwnProperty('User-Agent') ? sess.ua = head['User-Agent'] : sess.ua = head['user-agent'];
-        $.setdata(JSON.stringify(sess), _key);
+		head.hasOwnProperty('Cookie') ? sess.ck = head['Cookie'] : sess.ck = head['cookie'];
+        //sess.ck = sess.ck.split(';')[1] + ';' + sess.ck.split(';')[2];
+		head.hasOwnProperty('User-Agent') ? sess.ua = head['User-Agent'] : sess.ua = head['user-agent'];
+		$.setdata(JSON.stringify(sess), _key);
         $.msg($.name, '获取Cookie成功🎉', JSON.stringify(sess));
     }
 }
@@ -114,7 +118,48 @@ function signin() {
     });
 }
 
+function share() {
+    return new Promise((resolve) => {
+        headers = {'User-Agent': $.WBZJ.ua, 'Cookie': `publicKey=${publicKey}; ${$.WBZJ.ck}`,}
+        url = $.WBZJ.url + `/shareContent/shareCallback/type/2/id/${sid}/share/weixin`;
+        const rest = {url:url, headers:headers};
+        $.get(rest, (error, response, data) => {
+            try {
+                //console.log('分享密文：'+data);
+                data = AES_Decrypt(key,data)
+                //console.log('分享明文：'+data);
+                //var obj = JSON.parse(data);
+                message += `share: ${sid}${data}\n`;
+            } catch (e) {
+                $.logErr(e,"❌请重新登陆更新Cookie");
+            } finally {
+                resolve();
+            }
+        });
+    });
+}
 
+
+function welcome() {
+    return new Promise((resolve) => {
+        headers = {'User-Agent': $.WBZJ.ua, 'Cookie': `publicKey=${publicKey}; ${$.WBZJ.ck}`,}
+        url = $.WBZJ.url + '/common/welcome/';
+        const rest = {url:url, headers:headers};
+        $.get(rest, (error, response, data) => {
+            try {
+                //console.log('welcome：'+data);
+                data = AES_Decrypt(key,data)
+                //console.log('welcome：'+data);
+                //var obj = JSON.parse(data);
+                message += `welcome: ${data}\n`;
+            } catch (e) {
+                $.logErr(e,"❌请重新登陆更新Cookie");
+            } finally {
+                resolve();
+            }
+        });
+    });
+}
 
 //通知
 async function SendMsg(message){$.isNode()?await notify.sendNotify($.name,message):$.msg($.name,"",message);}
