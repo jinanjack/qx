@@ -24,7 +24,6 @@ var CryptoJS=CryptoJS||function(t,e){var r;if("undefined"!=typeof window&&window
 let body = $response.body;
 body = AES_Decrypt(body);
 body = body.replace(/\"is_unlock\"\:\"0\"/g,'"is_unlock":"1"');
-console.log('哈哈哈哈哈====='+body);
 body = AES_Encrypt(body);
 $done({body});
 
