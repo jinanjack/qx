@@ -1,6 +1,6 @@
 /* 
 
-小蓝医学，解锁VIP
+小蓝医学，解锁VIP 仅QX测试
 软件下载链接：https://apps.apple.com/cn/app/id1642455052
 
 
