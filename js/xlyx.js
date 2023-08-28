@@ -8,7 +8,7 @@
 密钥来源链接：https://t.me/chxm1023/318
 ====================================
 [rewrite_local]
-^https:\/\/edu\.lezaitizhong\.com\/(vod|tiku)\/(class_list|getclassifychapter)\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/task/xlyx.js
+^https:\/\/edu\.lezaitizhong\.com\/(vod|tiku)\/(class_list|getclassifychapter)\? url script-response-body https://raw.githubusercontent.com/wf021325/qx/master/js/xlyx.js
 
 [mitm]
 hostname = edu.lezaitizhong.com
