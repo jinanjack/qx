@@ -44,7 +44,7 @@ var publicKey, key , sid, shareid = ["69517", "82748", "83256", "44181", "89574"
     if ($.WBZJ != undefined) {
 		$.WBZJ = JSON.parse($.WBZJ);
 		await checkIn();
-		await welcome();
+		await initializa();
         for (sid of shareid) {
             await share();
         }
@@ -108,7 +108,7 @@ function signin() {
                 data = AES_Decrypt(key,data)
                 //console.log('签到明文：'+data);
                 var obj = JSON.parse(data);
-                message += `签到:${obj?.message} 累计时光币:${obj?.gold}\n`;
+                message += `每日签到:${obj?.message} 累计时光币:${obj?.gold}\n`;
             } catch (e) {
                 $.logErr(e,"❌请重新登陆更新Cookie");
             } finally {
@@ -129,7 +129,7 @@ function share() {
                 data = AES_Decrypt(key,data)
                 //console.log('分享明文：'+data);
                 //var obj = JSON.parse(data);
-                message += `share: ${sid}${data}\n`;
+                message += `分享文章: ${sid}${data}\n`;
             } catch (e) {
                 $.logErr(e,"❌请重新登陆更新Cookie");
             } finally {
@@ -140,18 +140,19 @@ function share() {
 }
 
 
-function welcome() {
+function initializa() {
     return new Promise((resolve) => {
         headers = {'User-Agent': $.WBZJ.ua, 'Cookie': `publicKey=${publicKey}; ${$.WBZJ.ck}`,}
-        url = $.WBZJ.url + '/common/welcome/';
-        const rest = {url:url, headers:headers};
-        $.get(rest, (error, response, data) => {
+        url = $.WBZJ.url + '/common/initializa/';
+		body = 'PHPSESSID=1';
+        const rest = {url:url, body:body, headers:headers};
+        $.post(rest, (error, response, data) => {
             try {
-                //console.log('welcome：'+data);
+                //console.log('每日登录：'+data);
                 data = AES_Decrypt(key,data)
-                //console.log('welcome：'+data);
-                //var obj = JSON.parse(data);
-                message += `welcome: ${data}\n`;
+                //console.log('每日登录：'+data);
+                var obj = JSON.parse(data);
+                message += `每日登录: ${obj?.message}\n`;
             } catch (e) {
                 $.logErr(e,"❌请重新登陆更新Cookie");
             } finally {
@@ -160,6 +161,12 @@ function welcome() {
         });
     });
 }
+
+
+
+
+
+
 
 //通知
 async function SendMsg(message){$.isNode()?await notify.sendNotify($.name,message):$.msg($.name,"",message);}
