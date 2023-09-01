@@ -8,7 +8,7 @@ hostname = www.hifini.com
  */
 const $ = new Env("hifini");
 const _key = 'hifini_KEY';
-$.hifini = $.getdata(_key) //|| ($.isNode() ? process.env[_key] : '');
+$.hifini = $.getdata(_key) || ($.isNode() ? process.env[_key] : '');
 const notify = $.isNode() ? require('./sendNotify') : '';
 
 var message = "";
