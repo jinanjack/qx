@@ -1,5 +1,6 @@
 /*
 # hifini 签到
+仅测试QX，node,青龙
 
 ^https:\/\/www\.hifini\.com\/$ url script-request-header https://raw.githubusercontent.com/wf021325/qx/master/task/hifini.js
 
